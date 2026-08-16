@@ -783,6 +783,12 @@ p:last-child { margin-bottom: 0; }
     mask-image: linear-gradient(90deg, transparent 0%, #000 14%);
   }
 
+  /* The mobile crop only has room for one figure — right-anchored (the
+     desktop default) isolates the older client's profile, looking away
+     from camera, and loses the conversation entirely. Pull the anchor
+     left enough to frame the smiling younger client instead. */
+  .hero-bg-img { object-position: 58% center; }
+
   .hero-overlay {
     background: linear-gradient(
       90deg,
