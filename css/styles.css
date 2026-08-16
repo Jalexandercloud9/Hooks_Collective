@@ -792,10 +792,14 @@ p:last-child { margin-bottom: 0; }
   .hero-tagline { max-width: 34ch; }
   .hero-cta .btn { flex: 1 1 auto; }
 
-  /* Screen's too narrow for the text column and the book to share space
-     cleanly — go with a solid scrim so the headline never sits legibly
-     on top of the book or its handwriting. */
-  .hero-overlay { background: rgba(28, 20, 31, 0.94); }
+  /* Screen's too narrow for the text column and a full view of the book
+     to share space — reframe the crop to hold on the blank/cover part of
+     the journal (object-position shifted left of the handwritten page)
+     so the headline sits over plain page instead of the handwriting, and
+     tone the scrim down from the old near-opaque wash so the photo still
+     reads as a photo. */
+  .hero-bg-img { object-position: 42% 50%; }
+  .hero-overlay { background: rgba(28, 20, 31, 0.78); }
 
   .story-body { padding-left: 1.5rem; }
   .story-quote { margin-top: 2.5rem; padding-top: 2rem; }
