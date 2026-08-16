@@ -770,12 +770,18 @@ p:last-child { margin-bottom: 0; }
   /* Content sits lower-left over the photo instead of vertically
      centered, so the type stays clear of the book in the upper right.
      The photo itself is inset from the left instead of running full-bleed
-     — that reserves a solid-cream margin (matching the photo's own
-     background tone, so the seam is invisible) that isn't fighting the
-     crop for room, giving the text column real width to work with. */
+     — that reserves a margin that isn't fighting the crop for room,
+     giving the text column real width to work with. A straight edge
+     there reads as the photo being cut off (the shadow/highlight detail
+     in it just stops dead), so its own left edge fades to transparent
+     instead, blending into the cream background underneath it. */
   .hero { align-items: flex-end; }
 
-  .hero-media { left: 32%; }
+  .hero-media {
+    left: 32%;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 14%);
+  }
 
   .hero-overlay {
     background: linear-gradient(
