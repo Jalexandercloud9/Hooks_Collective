@@ -769,9 +769,13 @@ p:last-child { margin-bottom: 0; }
 
   /* Content sits lower-left over the photo instead of vertically
      centered, so the type stays clear of the book in the upper right.
-     The mobile crop is tighter than desktop's, so the wash needs to be
-     stronger to stay legible. */
+     The photo itself is inset from the left instead of running full-bleed
+     — that reserves a solid-cream margin (matching the photo's own
+     background tone, so the seam is invisible) that isn't fighting the
+     crop for room, giving the text column real width to work with. */
   .hero { align-items: flex-end; }
+
+  .hero-media { left: 32%; }
 
   .hero-overlay {
     background: linear-gradient(
@@ -783,20 +787,20 @@ p:last-child { margin-bottom: 0; }
   }
 
   .hero-content {
-    max-width: 190px;
+    max-width: 300px;
     padding: 1.5rem 1.5rem 4.5rem 1.25rem;
   }
 
-  .hero-title { font-size: 1.8rem; margin-bottom: 0.6rem; }
+  .hero-title { font-size: 1.6rem; margin-bottom: 0.5rem; }
 
   .hero-tagline {
     max-width: none;
-    font-size: 0.9rem;
-    margin-bottom: 1.25rem;
+    font-size: 0.82rem;
+    margin-bottom: 1.1rem;
   }
 
-  .hero-cta { flex-direction: column; align-items: stretch; gap: 0.65rem; }
-  .hero-cta .btn { width: 100%; }
+  .hero-cta { flex-direction: row; flex-wrap: nowrap; gap: 0.4rem; }
+  .hero-cta .btn { flex: 0 1 auto; padding: 0.55rem 0.85rem; font-size: 0.68rem; white-space: nowrap; }
 
   .story-body { padding-left: 1.5rem; }
   .story-quote { margin-top: 2.5rem; padding-top: 2rem; }
