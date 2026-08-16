@@ -181,6 +181,10 @@ p:last-child { margin-bottom: 0; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
+  /* Keep the white logo/menu legible over whatever sits behind it at the
+     top of the page — a subtle scrim of its own rather than depending on
+     the hero underneath always being dark there. */
+  background: linear-gradient(180deg, rgba(20, 15, 22, 0.35) 0%, rgba(20, 15, 22, 0) 100%);
   transition: background-color 0.35s var(--ease), box-shadow 0.35s var(--ease),
               padding 0.35s var(--ease);
   padding: 1.35rem 0;
@@ -363,15 +367,6 @@ p:last-child { margin-bottom: 0; }
   max-width: 560px;
   margin: 0;
   padding: 8rem 1.5rem 6rem clamp(1.5rem, 6vw, 4rem);
-}
-
-.hero-eyebrow {
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: 1.5rem;
 }
 
 .hero-title {
@@ -788,18 +783,40 @@ p:last-child { margin-bottom: 0; }
   .story { padding: 4rem 0; }
   .section-header { margin-bottom: 2.5rem; }
 
-  .hero-content { padding: 7rem 1.5rem 5rem; max-width: none; }
+  /* There's no way to overlay the headline on the photo at this width
+     without either hiding the book or sitting on top of it, so stack
+     instead: the full photo up top (uncropped — its box matches the
+     image's own 3:2 ratio, so nothing is trimmed and the handwriting is
+     fully visible), headline and CTAs below on a solid background. */
+  .hero { min-height: auto; display: block; }
+
+  .hero-media {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 3 / 2;
+  }
+
+  .hero-media::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(180deg, rgba(28, 20, 31, 0) 72%, rgba(28, 20, 31, 0.55) 100%);
+  }
+
+  .hero-overlay { display: none; }
+
+  .hero-content {
+    position: relative;
+    z-index: auto;
+    max-width: none;
+    padding: 2.75rem 1.5rem 3rem;
+    background: var(--color-dark);
+  }
   .hero-tagline { max-width: 34ch; }
   .hero-cta .btn { flex: 1 1 auto; }
 
-  /* Screen's too narrow for the text column and a full view of the book
-     to share space — reframe the crop to hold on the blank/cover part of
-     the journal (object-position shifted left of the handwritten page)
-     so the headline sits over plain page instead of the handwriting, and
-     tone the scrim down from the old near-opaque wash so the photo still
-     reads as a photo. */
-  .hero-bg-img { object-position: 42% 50%; }
-  .hero-overlay { background: rgba(28, 20, 31, 0.78); }
+  .scroll-indicator { display: none; }
 
   .story-body { padding-left: 1.5rem; }
   .story-quote { margin-top: 2.5rem; padding-top: 2rem; }
