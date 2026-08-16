@@ -783,38 +783,39 @@ p:last-child { margin-bottom: 0; }
   .story { padding: 4rem 0; }
   .section-header { margin-bottom: 2.5rem; }
 
-  /* There's no way to overlay the headline on the photo at this width
-     without either hiding the book or sitting on top of it, so stack
-     instead: the full photo up top (uncropped — its box matches the
-     image's own 3:2 ratio, so nothing is trimmed and the handwriting is
-     fully visible), headline and CTAs below on a solid background. */
-  .hero { min-height: auto; display: block; }
-
-  .hero-media {
-    position: relative;
-    inset: auto;
-    aspect-ratio: 3 / 2;
-  }
-
-  .hero-media::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    background: linear-gradient(180deg, rgba(28, 20, 31, 0) 72%, rgba(28, 20, 31, 0.55) 100%);
-  }
+  /* Back to a true overlay on the photo, anchored to the bottom instead
+     of vertically centered: the book (including the handwriting, since
+     the crop still favors the right/written side) stays visible up top.
+     The scrim lives on .hero-content itself rather than as a percentage
+     of the full hero height — it fades in over a fixed distance at the
+     content block's own top edge, then stays solid for the rest of its
+     (auto) height. That way the dark zone always matches exactly how
+     tall the text block actually is, on both short and tall phones,
+     instead of over- or under-shooting it. */
+  .hero { align-items: flex-end; }
 
   .hero-overlay { display: none; }
 
   .hero-content {
-    position: relative;
-    z-index: auto;
     max-width: none;
-    padding: 2.75rem 1.5rem 3rem;
-    background: var(--color-dark);
+    padding: 3.5rem 1.5rem 3rem;
+    background: linear-gradient(
+      180deg,
+      rgba(28, 20, 31, 0) 0,
+      rgba(28, 20, 31, 0.85) 28px,
+      rgba(28, 20, 31, 0.97) 52px,
+      rgba(28, 20, 31, 0.97) 100%
+    );
   }
-  .hero-tagline { max-width: 34ch; }
-  .hero-cta .btn { flex: 1 1 auto; }
+
+  .hero-title { font-size: 2.35rem; margin-bottom: 0.75rem; }
+
+  .hero-tagline {
+    max-width: none;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-cta .btn { flex: 1 1 auto; padding: 0.75rem 1.5rem; }
 
   .scroll-indicator { display: none; }
 
