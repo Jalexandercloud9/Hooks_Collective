@@ -763,27 +763,22 @@ p:last-child { margin-bottom: 0; }
   .nav-link { color: var(--color-dark); font-size: 1.075rem; }
   .nav-cta { width: 100%; text-align: center; }
 
-  .services, .about, .contact { padding: 3.5rem 0; }
+  .services, .about, .contact { padding: 2.5rem 0; }
   .story { padding: 4rem 0; }
-  .section-header { margin-bottom: 2.5rem; }
+  .section-header { margin-bottom: 2rem; }
 
-  /* Photo on top, text below — not an overlay. The book itself spans
-     roughly 42%–91% of the photo's width, with a lot of plain empty
-     background to its left; showing the full 3:2 image left it looking
-     off-center and left-heavy. Cropping the box to roughly a square
-     (still right-anchored, same as the base object-position) shows
-     just the ~33%–100% window, which centers the book with even margins
-     on both sides while keeping "your story isn't over" and the pen
-     fully visible — nothing is cut off, it's a tighter frame around
-     the same content. That still leaves most of the viewport for the
-     headline, subtext, and buttons below (no scrim needed, since text
-     and photo don't overlap). */
+  /* Compact enough that the hero plus the very top of Services (the
+     "What we offer" eyebrow + heading) both land in the first screen,
+     with no scrolling needed to see the section exists. The book's
+     crop is shorter/wider than the centered version (4:3 instead of
+     1:1) to save height — it trades some of that centering for the
+     space, but "your story isn't over" and the pen still show fully. */
   .hero { min-height: auto; display: block; }
 
   .hero-media {
     position: relative;
     inset: auto;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
   }
 
   .hero-overlay { display: none; }
@@ -792,19 +787,23 @@ p:last-child { margin-bottom: 0; }
     position: relative;
     z-index: auto;
     max-width: none;
-    padding: 1.75rem 1.5rem 2.5rem;
+    padding: 1.25rem 1.5rem 1.5rem;
   }
 
-  .hero-title { font-size: 2.1rem; margin-bottom: 0.6rem; }
+  /* One line instead of two — the space before the <br> is kept in the
+     markup so removing the break here doesn't run the words together;
+     desktop still gets the two-line break. */
+  .hero-title br { display: none; }
+  .hero-title { font-size: 1.7rem; margin-bottom: 0.4rem; }
 
   .hero-tagline {
     max-width: none;
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
   }
 
   .hero-cta { flex-direction: row; flex-wrap: nowrap; gap: 0.5rem; }
-  .hero-cta .btn { flex: 1 1 0; padding: 0.75rem 0.75rem; font-size: 0.8rem; }
+  .hero-cta .btn { flex: 1 1 0; padding: 0.65rem 0.75rem; font-size: 0.78rem; }
 
   .scroll-indicator { display: none; }
 
