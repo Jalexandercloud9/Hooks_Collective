@@ -210,18 +210,9 @@ p:last-child { margin-bottom: 0; }
 }
 
 .nav-logo-mark {
-  width: 40px;
-  height: 40px;
+  height: 42px;
+  width: auto;
   flex: none;
-  display: grid;
-  place-items: center;
-  border-radius: 9px;
-  background: var(--color-primary);
-  color: #fff;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.25rem;
-  line-height: 1;
 }
 
 .nav-logo-text { display: flex; flex-direction: column; line-height: 1.2; }
@@ -353,12 +344,13 @@ p:last-child { margin-bottom: 0; }
   padding: 5rem 1.5rem 4rem clamp(1.5rem, 6vw, 4rem);
 }
 
-.hero-title {
-  font-size: clamp(3rem, 9vw, 6rem);
-  color: var(--color-dark);
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  margin-bottom: 1.5rem;
+.hero-title { margin-bottom: 1.5rem; }
+
+.hero-logo {
+  display: block;
+  width: 400px;
+  max-width: 100%;
+  height: auto;
 }
 
 .hero-tagline {
@@ -692,10 +684,9 @@ p:last-child { margin-bottom: 0; }
 
 .footer-logo {
   display: block;
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--color-light);
+  width: 190px;
+  height: auto;
+  margin: 0 auto;
 }
 .footer-sub {
   display: block;
@@ -763,9 +754,9 @@ p:last-child { margin-bottom: 0; }
   .nav-link { color: var(--color-dark); font-size: 1.075rem; }
   .nav-cta { width: 100%; text-align: center; }
 
-  .services, .about, .contact { padding: 2rem 0; }
+  .services, .about, .contact { padding: 1.5rem 0; }
   .story { padding: 4rem 0; }
-  .section-header { margin-bottom: 1.5rem; }
+  .section-header { margin-bottom: 1.25rem; }
 
   /* Compact enough that the hero plus the very top of Services (the
      "What we offer" eyebrow + heading) both land in the first screen,
@@ -787,19 +778,16 @@ p:last-child { margin-bottom: 0; }
     position: relative;
     z-index: auto;
     max-width: none;
-    padding: 1rem 1.5rem 1.25rem;
+    padding: 0.85rem 1.5rem 0.9rem;
   }
 
-  /* One line instead of two — the space before the <br> is kept in the
-     markup so removing the break here doesn't run the words together;
-     desktop still gets the two-line break. */
-  .hero-title br { display: none; }
-  .hero-title { font-size: 1.6rem; margin-bottom: 0.3rem; }
+  .hero-title { margin-bottom: 0.5rem; }
+  .hero-logo { width: 165px; }
 
   .hero-tagline {
     max-width: none;
-    font-size: 0.82rem;
-    margin-bottom: 0.85rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.7rem;
   }
 
   .hero-cta { flex-direction: row; flex-wrap: nowrap; gap: 0.5rem; }
