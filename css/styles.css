@@ -767,52 +767,42 @@ p:last-child { margin-bottom: 0; }
   .story { padding: 4rem 0; }
   .section-header { margin-bottom: 2.5rem; }
 
-  /* Content sits lower-left over the photo instead of vertically
-     centered, so the type stays clear of the book in the upper right.
-     The photo itself is inset from the left instead of running full-bleed
-     — that reserves a margin that isn't fighting the crop for room,
-     giving the text column real width to work with. A straight edge
-     there reads as the photo being cut off (the shadow/highlight detail
-     in it just stops dead), so its own left edge fades to transparent
-     instead, blending into the cream background underneath it. */
-  .hero { align-items: flex-end; }
+  /* Photo on top, text below — not an overlay. The photo's box matches
+     its own 3:2 ratio exactly, so the whole image shows uncropped
+     (guaranteeing "your story isn't over" is always fully visible,
+     since nothing ever sits on top of it) while naturally staying a
+     minority of the screen height, leaving most of the viewport for
+     the headline, subtext, and buttons below on the hero's own plain
+     background — no scrim needed since text and photo don't overlap. */
+  .hero { min-height: auto; display: block; }
 
   .hero-media {
-    left: 32%;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 14%);
+    position: relative;
+    inset: auto;
+    aspect-ratio: 3 / 2;
   }
 
-  /* The mobile crop only has room for one figure — right-anchored (the
-     desktop default) isolates the older client's profile, looking away
-     from camera, and loses the conversation entirely. Pull the anchor
-     left enough to frame the smiling younger client instead. */
-  .hero-bg-img { object-position: 58% center; }
-
-  .hero-overlay {
-    background: linear-gradient(
-      90deg,
-      rgba(239, 231, 220, 0.95) 0%,
-      rgba(239, 231, 220, 0.72) 42%,
-      rgba(239, 231, 220, 0) 88%
-    );
-  }
+  .hero-overlay { display: none; }
 
   .hero-content {
-    max-width: 300px;
-    padding: 1.5rem 1.5rem 4.5rem 1.25rem;
+    position: relative;
+    z-index: auto;
+    max-width: none;
+    padding: 1.75rem 1.5rem 2.5rem;
   }
 
-  .hero-title { font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .hero-title { font-size: 2.1rem; margin-bottom: 0.6rem; }
 
   .hero-tagline {
     max-width: none;
-    font-size: 0.82rem;
-    margin-bottom: 1.1rem;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
   }
 
-  .hero-cta { flex-direction: row; flex-wrap: nowrap; gap: 0.4rem; }
-  .hero-cta .btn { flex: 0 1 auto; padding: 0.55rem 0.85rem; font-size: 0.68rem; white-space: nowrap; }
+  .hero-cta { flex-direction: row; flex-wrap: nowrap; gap: 0.5rem; }
+  .hero-cta .btn { flex: 1 1 0; padding: 0.75rem 0.75rem; font-size: 0.8rem; }
+
+  .scroll-indicator { display: none; }
 
   .story-body { padding-left: 1.5rem; }
   .story-quote { margin-top: 2.5rem; padding-top: 2rem; }
