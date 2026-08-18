@@ -767,19 +767,23 @@ p:last-child { margin-bottom: 0; }
   .story { padding: 4rem 0; }
   .section-header { margin-bottom: 2.5rem; }
 
-  /* Photo on top, text below — not an overlay. The photo's box matches
-     its own 3:2 ratio exactly, so the whole image shows uncropped
-     (guaranteeing "your story isn't over" is always fully visible,
-     since nothing ever sits on top of it) while naturally staying a
-     minority of the screen height, leaving most of the viewport for
-     the headline, subtext, and buttons below on the hero's own plain
-     background — no scrim needed since text and photo don't overlap. */
+  /* Photo on top, text below — not an overlay. The book itself spans
+     roughly 42%–91% of the photo's width, with a lot of plain empty
+     background to its left; showing the full 3:2 image left it looking
+     off-center and left-heavy. Cropping the box to roughly a square
+     (still right-anchored, same as the base object-position) shows
+     just the ~33%–100% window, which centers the book with even margins
+     on both sides while keeping "your story isn't over" and the pen
+     fully visible — nothing is cut off, it's a tighter frame around
+     the same content. That still leaves most of the viewport for the
+     headline, subtext, and buttons below (no scrim needed, since text
+     and photo don't overlap). */
   .hero { min-height: auto; display: block; }
 
   .hero-media {
     position: relative;
     inset: auto;
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 1 / 1;
   }
 
   .hero-overlay { display: none; }
