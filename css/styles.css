@@ -295,8 +295,8 @@ p:last-child { margin-bottom: 0; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 70vh;
+  min-height: 70svh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -350,7 +350,7 @@ p:last-child { margin-bottom: 0; }
      instead of drifting right toward the book photo. */
   max-width: 560px;
   margin: 0;
-  padding: 8rem 1.5rem 6rem clamp(1.5rem, 6vw, 4rem);
+  padding: 5rem 1.5rem 4rem clamp(1.5rem, 6vw, 4rem);
 }
 
 .hero-title {
@@ -763,22 +763,22 @@ p:last-child { margin-bottom: 0; }
   .nav-link { color: var(--color-dark); font-size: 1.075rem; }
   .nav-cta { width: 100%; text-align: center; }
 
-  .services, .about, .contact { padding: 2.5rem 0; }
+  .services, .about, .contact { padding: 2rem 0; }
   .story { padding: 4rem 0; }
-  .section-header { margin-bottom: 2rem; }
+  .section-header { margin-bottom: 1.5rem; }
 
   /* Compact enough that the hero plus the very top of Services (the
      "What we offer" eyebrow + heading) both land in the first screen,
-     with no scrolling needed to see the section exists. The book's
-     crop is shorter/wider than the centered version (4:3 instead of
-     1:1) to save height — it trades some of that centering for the
-     space, but "your story isn't over" and the pen still show fully. */
+     with no scrolling needed to see the section exists. 1:1 keeps the
+     book centered (established two rounds ago) — trimming the text
+     block's own padding/sizing instead of the photo is what buys back
+     the room, rather than re-cropping the photo shorter again. */
   .hero { min-height: auto; display: block; }
 
   .hero-media {
     position: relative;
     inset: auto;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
   }
 
   .hero-overlay { display: none; }
@@ -787,23 +787,23 @@ p:last-child { margin-bottom: 0; }
     position: relative;
     z-index: auto;
     max-width: none;
-    padding: 1.25rem 1.5rem 1.5rem;
+    padding: 1rem 1.5rem 1.25rem;
   }
 
   /* One line instead of two — the space before the <br> is kept in the
      markup so removing the break here doesn't run the words together;
      desktop still gets the two-line break. */
   .hero-title br { display: none; }
-  .hero-title { font-size: 1.7rem; margin-bottom: 0.4rem; }
+  .hero-title { font-size: 1.6rem; margin-bottom: 0.3rem; }
 
   .hero-tagline {
     max-width: none;
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
+    font-size: 0.82rem;
+    margin-bottom: 0.85rem;
   }
 
   .hero-cta { flex-direction: row; flex-wrap: nowrap; gap: 0.5rem; }
-  .hero-cta .btn { flex: 1 1 0; padding: 0.65rem 0.75rem; font-size: 0.78rem; }
+  .hero-cta .btn { flex: 1 1 0; padding: 0.55rem 0.75rem; font-size: 0.75rem; }
 
   .scroll-indicator { display: none; }
 
