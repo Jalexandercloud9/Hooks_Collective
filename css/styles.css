@@ -335,8 +335,8 @@ p:last-child { margin-bottom: 0; }
 
 /* ---------- Footer ---------- */
 .footer {
-  background: var(--cream);
-  border-top: 1px solid var(--border);
+  background: var(--black-band);
+  border-top: 1px solid rgba(250, 244, 239, 0.12);
   padding: 3rem 0 2rem;
 }
 .footer-inner {
@@ -346,6 +346,12 @@ p:last-child { margin-bottom: 0; }
   text-align: center;
   gap: 1.5rem;
 }
+
+/* The logo lockup is styled for a light background everywhere else (nav) —
+   override its colors here for the black footer. */
+.footer .logo-mark { border-color: var(--cream); color: var(--cream); }
+.footer .logo-script,
+.footer .logo-sub { color: var(--cream); }
 
 .footer-nav {
   display: flex;
@@ -360,7 +366,7 @@ p:last-child { margin-bottom: 0; }
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--ink);
+  color: var(--cream);
   text-decoration: none;
   transition: color 0.2s var(--ease);
 }
@@ -369,14 +375,14 @@ p:last-child { margin-bottom: 0; }
 .footer-sub {
   font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--muted);
+  color: rgba(250, 244, 239, 0.65);
   margin: 0;
 }
 
 .footer-copy {
   font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--muted);
+  color: rgba(250, 244, 239, 0.45);
   margin: 0;
 }
 
@@ -542,9 +548,69 @@ p:last-child { margin-bottom: 0; }
 
 .service-card-body .card-heading { margin-bottom: 0.9rem; }
 
+/* ---------- About ---------- */
+.about { padding: 0 0 6rem; background: var(--cream); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr 1px 0.9fr;
+  grid-template-areas: "allana div1 story div2 portrait";
+  gap: 3.5rem;
+  align-items: start;
+}
+.about-col-allana { grid-area: allana; }
+.about-divider-1 { grid-area: div1; background: var(--border); align-self: stretch; }
+.about-col-story { grid-area: story; }
+.about-divider-2 { grid-area: div2; background: var(--border); align-self: stretch; }
+.about-col-portrait { grid-area: portrait; position: sticky; top: 3rem; }
+
+.about-portrait-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+/* Mixed script/caps heading: "Meet ALLANA", "Our STORY" — the two spans
+   share a baseline because that's how adjacent inline elements lay out
+   by default, no flex/grid trickery needed. */
+.mixed-heading { margin: 0 0 1.25rem; }
+.mixed-heading .heading-script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--gold);
+  font-size: 3rem;
+}
+.mixed-heading .heading-caps { font-size: 2.75rem; color: var(--ink); }
+
+.about-col .rule-gold { margin-top: 0; margin-bottom: 1.75rem; }
+
+.about-lead { font-size: 1.05rem; }
+.about-emphasis { font-weight: 500; color: var(--ink); }
+
+.about-signoff {
+  display: block;
+  font-family: var(--font-script);
+  font-size: 1.75rem;
+  color: var(--gold);
+  margin-top: 1.5rem;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .cta-banner { padding: 2rem; }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "portrait" "allana" "story";
+    gap: 3rem;
+  }
+  .about-divider-1, .about-divider-2 { display: none; }
+  .about-col-allana, .about-col-story { border-top: 1px solid var(--border); padding-top: 2.5rem; }
+  .about-col-portrait { position: static; max-width: 420px; margin: 0 auto; }
 }
 
 @media (max-width: 768px) {
