@@ -96,12 +96,6 @@ p:last-child { margin-bottom: 0; }
   line-height: 0.95;
 }
 
-/* Hero title (HOME) */
-.hero-title {
-  font-size: clamp(2.75rem, 7vw, 4.75rem);
-  line-height: 1.0;
-}
-
 /* Card heading (service cards, three-up teaser) */
 .card-heading {
   font-family: var(--font-display);
@@ -191,7 +185,10 @@ p:last-child { margin-bottom: 0; }
   gap: 1.5rem;
 }
 
-/* Logo lockup: circle mark + stacked wordmark */
+/* Logo lockup: the client's actual logo file (assets/HooksCollectiveLogo.png),
+   keyed to transparent and cropped into a mark and a wordmark — not a
+   font-based recreation. Nav uses both; the footer uses the wordmark alone,
+   in its light-on-transparent variant since it sits on the black footer. */
 .logo {
   display: flex;
   align-items: center;
@@ -199,42 +196,8 @@ p:last-child { margin-bottom: 0; }
   text-decoration: none;
 }
 
-.logo-mark {
-  flex: none;
-  width: 56px;
-  height: 56px;
-  border: 1.5px solid var(--ink);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: var(--font-italic);
-  font-style: normal;
-  font-weight: 700;
-  font-size: 1.6rem;
-  color: var(--ink);
-}
-
-/* align-items: stretch (the default) makes both lines share the width of
-   the wider one (the script line) — centering the tracked-caps line inside
-   that shared width is what makes it optically align under the script
-   above it, since its own glyph run alone doesn't reach that width. */
-.logo-text { display: flex; flex-direction: column; line-height: 1; }
-.logo-script {
-  font-family: var(--font-script);
-  font-size: 1.9rem;
-  color: var(--ink);
-  line-height: 1;
-  white-space: nowrap;
-}
-.logo-sub {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.7rem;
-  letter-spacing: 0.32em;
-  text-align: center;
-  color: var(--ink);
-  margin-top: 0.15rem;
-}
+.logo-mark-img { flex: none; height: 52px; width: auto; }
+.logo-wordmark-img { height: 46px; width: auto; }
 
 .nav-links {
   display: flex;
@@ -347,11 +310,9 @@ p:last-child { margin-bottom: 0; }
   gap: 1.5rem;
 }
 
-/* The logo lockup is styled for a light background everywhere else (nav) —
-   override its colors here for the black footer. */
-.footer .logo-mark { border-color: var(--cream); color: var(--cream); }
-.footer .logo-script,
-.footer .logo-sub { color: var(--cream); }
+/* Footer uses the wordmark alone (no mark), sized a bit larger since
+   there's no mark beside it to set its scale. */
+.footer .logo-wordmark-img { height: 56px; }
 
 .footer-nav {
   display: flex;
@@ -387,53 +348,103 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ---------- Home: Hero ---------- */
-/* Header sits inside this section, above the grid, so the photo starts
-   below the nav (see index.html). Not position:fixed on desktop — it's a
-   normal block, same as every other page. */
-.hero-section { background: var(--cream); }
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
+/* Restored to the pre-redesign hero: full-bleed photo with a soft cream
+   wash and the wordmark + tagline overlaid on top of it, rather than the
+   redesign's split text/photo grid. The header now sits above this
+   section in normal flow (not overlaid on the photo) so its behavior
+   stays consistent with the shared header on every other page. */
+.hero {
+  position: relative;
+  min-height: 70vh;
+  min-height: 70svh;
+  display: flex;
   align-items: center;
-  min-height: 78vh;
+  overflow: hidden;
+  background: var(--cream);
 }
 
-.hero-left {
-  /* Right padding is fixed per spec; left padding lines the text up with
-     the standard container edge even though this grid runs full-bleed
-     (unlike .container, which caps at --container-max). */
-  padding: 3rem 3rem 3rem max(1.5rem, calc((100vw - var(--container-max)) / 2 + 1.5rem));
+.hero-media { position: absolute; inset: 0; }
+
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg, #EFE7DC 0%, #F3EBDF 55%, #F7F3EE 100%);
+  z-index: 0;
 }
 
-.hero-kicker {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink);
-  margin: 1.5rem 0 0;
-}
-
-.hero-subhead {
-  font-size: 1.6rem;
-  margin: 0.35rem 0 1.5rem;
-  display: block;
-}
-
-.hero-body { max-width: 46ch; margin: 0 0 2rem; }
-
-/* Right column: full-bleed to the actual viewport edge, not the grid
-   column's edge inside a centered container. */
-.hero-media-col { position: relative; height: 100%; min-height: 420px; }
-.hero-media-col img {
+.hero-bg-img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: right center;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    rgba(239, 231, 220, 0.92) 0%,
+    rgba(239, 231, 220, 0.72) 42%,
+    rgba(239, 231, 220, 0) 78%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 560px;
+  margin: 0;
+  padding: 5rem 1.5rem 4rem clamp(1.5rem, 6vw, 4rem);
+}
+
+.hero-title { margin: 0 0 1.5rem; }
+
+.hero-logo {
+  display: block;
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-tagline {
+  font-size: clamp(1.075rem, 2.2vw, 1.35rem);
+  line-height: 1.6;
+  color: var(--body);
+  max-width: 34ch;
+  margin: 0 0 2.5rem;
+}
+
+.hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+}
+.scroll-arrow {
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid rgba(20, 20, 20, 0.55);
+  border-bottom: 2px solid rgba(20, 20, 20, 0.55);
+  transform: rotate(45deg);
+  animation: bob 2.2s var(--ease) infinite;
+}
+@keyframes bob {
+  0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.5; }
+  50% { transform: rotate(45deg) translate(4px, 4px); opacity: 1; }
 }
 
 /* ---------- Home: Three-up teaser ---------- */
@@ -771,27 +782,52 @@ p:last-child { margin-bottom: 0; }
 
   .footer-nav { flex-wrap: wrap; justify-content: center; gap: 1.25rem 1.75rem; }
 
-  /* Home hero: the header is nested inside .hero-section and becomes
-     position:fixed above, so it no longer holds space in flow — pad the
-     section to clear it. Stack photo-over-text instead of the two-column
-     grid; the object-position starting point (center 38%) is tuned
-     against the real photo so the handwritten phrase stays in the band,
-     not the crop math. */
-  .hero-section { padding-top: 4.5rem; }
-  .hero-grid { display: block; min-height: auto; }
-  .hero-left { padding: 2rem 1.5rem 2.5rem; }
-  .hero-media-col {
-    height: 34svh;
-    min-height: 220px;
+  /* Home hero: unlike the old design's always-fixed transparent navbar,
+     the shared .site-header is solid cream when fixed on mobile — so the
+     hero needs top padding to clear it, which the old design never
+     needed. The photo (.hero-media, first in source order) still stacks
+     above the text as it did before. */
+  .hero {
+    min-height: auto;
+    display: block;
+    padding-top: 4.5rem;
   }
-  .hero-media-col img { object-position: center 38%; }
+
+  .hero-media {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .hero-overlay { display: none; }
+
+  .hero-content {
+    position: relative;
+    z-index: auto;
+    max-width: none;
+    padding: 0.85rem 1.5rem 0.9rem;
+  }
+
+  .hero-title { margin: 0 0 0.5rem; }
+  .hero-logo { width: 165px; }
+
+  .hero-tagline {
+    max-width: none;
+    font-size: 0.8rem;
+    margin: 0 0 0.7rem;
+  }
+
+  .hero-cta { flex-direction: row; flex-wrap: nowrap; gap: 0.5rem; }
+  .hero-cta .btn { flex: 1 1 0; padding: 0.55rem 0.75rem; font-size: 0.75rem; }
+
+  .scroll-indicator { display: none; }
 
   .teaser { padding: 3.5rem 0; }
   .teaser-grid { grid-template-columns: 1fr; gap: 2.75rem; }
 
   .quote-band { padding: 3.5rem 0; }
 
-  /* Page header: same fixed-nav clearance as .hero-section on Home. */
+  /* Page header: same fixed-nav clearance as .hero on Home. */
   .page-header { padding: 6.5rem 0 3rem; }
 
   /* Services cards: single column — icon on top (smaller), divider goes

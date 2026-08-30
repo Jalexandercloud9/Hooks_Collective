@@ -27,51 +27,51 @@
 
   <a href="#main" class="skip-link">Skip to content</a>
 
+  <!-- ============ HEADER / NAV ============ -->
+  <!-- CUSTOMIZE: this header block is duplicated on every page — any change
+       here must be copied to about.html, services.html, and contact.html -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="assets/logo-mark-dark.png" alt="" class="logo-mark-img" />
+        <img src="assets/logo-wordmark-dark.png" alt="The Hooks Collective" class="logo-wordmark-img" />
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
   <main id="main">
 
     <!-- ============ HERO ============ -->
-    <section class="hero-section" id="home">
+    <section class="hero" id="home">
+      <div class="hero-media">
+        <!-- CUSTOMIZE: replace with Allana's hero photo (landscape, min 2000px wide) -->
+        <img src="assets/hero.jpg" alt="" class="hero-bg-img" data-placeholder />
+      </div>
+      <div class="hero-overlay"></div>
 
-      <!-- ============ HEADER / NAV ============ -->
-      <!-- CUSTOMIZE: this header block is duplicated on every page — any change
-           here must be copied to about.html, services.html, and contact.html -->
-      <header class="site-header">
-        <div class="nav-container">
-          <a href="index.html" class="logo">
-            <span class="logo-mark" aria-hidden="true">H</span>
-            <span class="logo-text">
-              <span class="logo-script">The Hooks</span>
-              <span class="logo-sub">Collective</span>
-            </span>
-          </a>
-
-          <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
-            <span></span><span></span><span></span>
-          </button>
-
-          <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" class="nav-link active">Home</a></li>
-            <li><a href="about.html" class="nav-link">About</a></li>
-            <li><a href="services.html" class="nav-link">Services</a></li>
-            <li><a href="contact.html" class="nav-link">Contact</a></li>
-          </ul>
-        </div>
-      </header>
-
-      <div class="hero-grid">
-        <div class="hero-left">
-          <h1 class="hero-title">The Hooks<br />Collective</h1>
-          <p class="hero-kicker">Making room for</p>
-          <span class="hero-subhead italic-gold">conversations that matter.</span>
-          <p class="hero-body">We create intentional spaces that deepen understanding, challenge perspectives, and create opportunities for meaningful change.</p>
-          <a href="about.html" class="btn btn-outline">Learn more <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-        </div>
-
-        <div class="hero-media-col">
-          <!-- CUSTOMIZE: replace with Allana's hero photo (landscape, min 2000px wide) -->
-          <img src="assets/hero.jpg" alt="" data-placeholder />
+      <div class="hero-content">
+        <h1 class="hero-title"><img src="assets/logo-wordmark-dark.png" alt="The Hooks Collective" class="hero-logo" /></h1>
+        <p class="hero-tagline">We partner with communities, organizations, and schools to make mental health discussions easier.</p>
+        <div class="hero-cta">
+          <a href="contact.html" class="btn btn-gold">Start a conversation <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="services.html" class="btn btn-outline">Explore services <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
+
+      <a href="#what-we-do" class="scroll-indicator" aria-label="Scroll to content">
+        <span class="scroll-arrow"></span>
+      </a>
     </section>
 
     <!-- ============ WHAT WE DO ============ -->
@@ -161,11 +161,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <a href="index.html" class="logo">
-        <span class="logo-mark" aria-hidden="true">H</span>
-        <span class="logo-text">
-          <span class="logo-script">The Hooks</span>
-          <span class="logo-sub">Collective</span>
-        </span>
+        <img src="assets/logo-wordmark-light.png" alt="The Hooks Collective" class="logo-wordmark-img" />
       </a>
 
       <ul class="footer-nav">
