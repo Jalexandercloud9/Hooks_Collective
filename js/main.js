@@ -40,6 +40,21 @@
     });
   }
 
+  /* ---------- Header scroll state (Home only) ----------
+     On Home the header floats transparent over the hero photo; once the
+     user scrolls past it, give it a solid background so it stays legible
+     over whatever content follows. Harmless to run on every page — the
+     .scrolled class only has a visual effect where body.page-home CSS
+     reacts to it. */
+  var siteHeader = document.querySelector('.site-header');
+  if (siteHeader) {
+    var updateHeaderScroll = function () {
+      siteHeader.classList.toggle('scrolled', window.scrollY > 50);
+    };
+    updateHeaderScroll();
+    window.addEventListener('scroll', updateHeaderScroll, { passive: true });
+  }
+
   /* ---------- Hide placeholder images that aren't there yet ----------
      Lets the section's plain background show through until real photos
      land in assets/ */

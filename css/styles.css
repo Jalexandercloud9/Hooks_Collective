@@ -175,6 +175,26 @@ p:last-child { margin-bottom: 0; }
   padding: 1.75rem 0;
 }
 
+/* Home only: the header floats fixed and transparent over the hero photo,
+   like the pre-redesign single-page navbar did, instead of sitting in
+   normal flow above the hero like the shared header on every other page.
+   JS toggles .scrolled once the user scrolls past the hero. */
+body.page-home .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: background-color 0.35s var(--ease), box-shadow 0.35s var(--ease),
+              padding 0.35s var(--ease);
+}
+body.page-home .site-header.scrolled {
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 1px 20px rgba(20, 20, 20, 0.08);
+  padding: 0.9rem 0;
+  backdrop-filter: blur(8px);
+}
+
 .nav-container {
   max-width: var(--container-max);
   margin: 0 auto;
@@ -751,6 +771,19 @@ p:last-child { margin-bottom: 0; }
     padding: 1.1rem 0;
   }
 
+  /* Home only: stay transparent over the hero photo until scrolled, same
+     as desktop, instead of the solid cream every other page uses. */
+  body.page-home .site-header {
+    background: transparent;
+    padding: 1.1rem 0;
+  }
+  body.page-home .site-header.scrolled {
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 1px 20px rgba(20, 20, 20, 0.08);
+    padding: 0.7rem 0;
+    backdrop-filter: blur(8px);
+  }
+
   .nav-links {
     position: fixed;
     top: 0;
@@ -782,15 +815,12 @@ p:last-child { margin-bottom: 0; }
 
   .footer-nav { flex-wrap: wrap; justify-content: center; gap: 1.25rem 1.75rem; }
 
-  /* Home hero: unlike the old design's always-fixed transparent navbar,
-     the shared .site-header is solid cream when fixed on mobile — so the
-     hero needs top padding to clear it, which the old design never
-     needed. The photo (.hero-media, first in source order) still stacks
-     above the text as it did before. */
+  /* Home hero: the header floats transparent above it (see body.page-home
+     .site-header above), so no top padding is needed to clear it — the
+     photo runs edge to edge behind the nav, same as the old design. */
   .hero {
     min-height: auto;
     display: block;
-    padding-top: 4.5rem;
   }
 
   .hero-media {
