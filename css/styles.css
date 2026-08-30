@@ -433,6 +433,22 @@ body.page-home .site-header.scrolled {
   height: auto;
 }
 
+.hero-kicker {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.hero-subhead {
+  font-size: 1.6rem;
+  margin: 0.35rem 0 1.5rem;
+  display: block;
+}
+
 .hero-tagline {
   font-size: clamp(1.075rem, 2.2vw, 1.35rem);
   line-height: 1.6;
@@ -840,6 +856,9 @@ body.page-home .site-header.scrolled {
 
   .hero-title { margin: 0 0 0.5rem; }
   .hero-logo { width: 165px; }
+
+  .hero-kicker { font-size: 0.75rem; }
+  .hero-subhead { font-size: 1.05rem; margin: 0.15rem 0 0.5rem; }
 
   .hero-tagline {
     max-width: none;
