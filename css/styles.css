@@ -380,6 +380,124 @@ p:last-child { margin-bottom: 0; }
   margin: 0;
 }
 
+/* ---------- Home: Hero ---------- */
+/* Header sits inside this section, above the grid, so the photo starts
+   below the nav (see index.html). Not position:fixed on desktop — it's a
+   normal block, same as every other page. */
+.hero-section { background: var(--cream); }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: center;
+  min-height: 78vh;
+}
+
+.hero-left {
+  /* Right padding is fixed per spec; left padding lines the text up with
+     the standard container edge even though this grid runs full-bleed
+     (unlike .container, which caps at --container-max). */
+  padding: 3rem 3rem 3rem max(1.5rem, calc((100vw - var(--container-max)) / 2 + 1.5rem));
+}
+
+.hero-kicker {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  margin: 1.5rem 0 0;
+}
+
+.hero-subhead {
+  font-size: 1.6rem;
+  margin: 0.35rem 0 1.5rem;
+  display: block;
+}
+
+.hero-body { max-width: 46ch; margin: 0 0 2rem; }
+
+/* Right column: full-bleed to the actual viewport edge, not the grid
+   column's edge inside a centered container. */
+.hero-media-col { position: relative; height: 100%; min-height: 420px; }
+.hero-media-col img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+/* ---------- Home: Three-up teaser ---------- */
+.teaser { padding: 6rem 0; background: var(--cream); }
+
+.section-heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--ink);
+  margin: 0;
+}
+.section-heading-row { text-align: center; margin-bottom: 3.5rem; }
+.section-heading-row .rule-gold { margin-left: auto; margin-right: auto; }
+
+.teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.teaser-card { text-align: left; }
+.teaser-icon { color: var(--gold); width: 56px; height: 56px; margin-bottom: 1.5rem; }
+.teaser-card .card-heading { margin-bottom: 0.75rem; }
+.teaser-desc { font-size: 0.95rem; margin-bottom: 1.25rem; }
+
+.teaser-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.teaser-link:hover { color: var(--gold-deep); }
+.teaser-link:hover .btn-arrow { transform: translateX(4px); }
+
+/* ---------- Home: Quote band ---------- */
+.quote-band {
+  background: var(--cream-deep);
+  padding: 5rem 0;
+  text-align: center;
+}
+.quote-text {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  color: var(--ink);
+  max-width: 26ch;
+  margin: 0 auto;
+  line-height: 1.35;
+}
+.quote-attribution {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-top: 1.5rem;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .cta-banner { padding: 2rem; }
@@ -426,6 +544,26 @@ p:last-child { margin-bottom: 0; }
   .cta-banner-action .btn { width: 100%; justify-content: center; }
 
   .footer-nav { flex-wrap: wrap; justify-content: center; gap: 1.25rem 1.75rem; }
+
+  /* Home hero: the header is nested inside .hero-section and becomes
+     position:fixed above, so it no longer holds space in flow — pad the
+     section to clear it. Stack photo-over-text instead of the two-column
+     grid; the object-position starting point (center 38%) is tuned
+     against the real photo so the handwritten phrase stays in the band,
+     not the crop math. */
+  .hero-section { padding-top: 4.5rem; }
+  .hero-grid { display: block; min-height: auto; }
+  .hero-left { padding: 2rem 1.5rem 2.5rem; }
+  .hero-media-col {
+    height: 34svh;
+    min-height: 220px;
+  }
+  .hero-media-col img { object-position: center 38%; }
+
+  .teaser { padding: 3.5rem 0; }
+  .teaser-grid { grid-template-columns: 1fr; gap: 2.75rem; }
+
+  .quote-band { padding: 3.5rem 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
