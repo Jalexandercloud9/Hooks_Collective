@@ -107,11 +107,11 @@ p:last-child { margin-bottom: 0; }
   margin: 0;
 }
 
-/* Gold rule — sits under every page title and section heading. Left/right
-   margin is pinned to 0 so it sits flush under the first letter instead of
-   the browser's default <hr> centering (margin-inline: auto), which was
-   centering it under the full block width instead of the text. Contexts
-   that want it centered (e.g. .section-heading-row) override this. */
+/* Gold rule — sits under the page title on About/Services/Contact.
+   Left/right margin is pinned to 0 so it sits flush under the first
+   letter instead of the browser's default <hr> centering
+   (margin-inline: auto), which was centering it under the full block
+   width instead of the text. */
 .rule-gold {
   width: 56px;
   height: 3px;
@@ -502,7 +502,6 @@ body.page-home .site-header.scrolled {
   margin: 0;
 }
 .section-heading-row { text-align: center; margin-bottom: 3.5rem; }
-.section-heading-row .rule-gold { margin-left: auto; margin-right: auto; }
 
 .teaser-grid {
   display: grid;
@@ -628,7 +627,7 @@ body.page-home .site-header.scrolled {
 /* Mixed script/caps heading: "Meet ALLANA", "Our STORY" — the two spans
    share a baseline because that's how adjacent inline elements lay out
    by default, no flex/grid trickery needed. */
-.mixed-heading { margin: 0 0 1.25rem; }
+.mixed-heading { margin: 0 0 1.75rem; }
 .mixed-heading .heading-script {
   font-family: var(--font-script);
   font-weight: 400;
@@ -638,8 +637,6 @@ body.page-home .site-header.scrolled {
   font-size: 3rem;
 }
 .mixed-heading .heading-caps { font-size: 2.75rem; color: var(--ink); }
-
-.about-col .rule-gold { margin-top: 0; margin-bottom: 1.75rem; }
 
 .about-lead { font-size: 1.05rem; }
 .about-emphasis { font-weight: 500; color: var(--ink); }
