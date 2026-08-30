@@ -512,23 +512,9 @@ body.page-home .site-header.scrolled {
 .teaser-card { text-align: left; }
 .teaser-icon { color: var(--gold); width: 56px; height: 56px; margin-bottom: 1.5rem; }
 .teaser-card .card-heading { margin-bottom: 0.75rem; }
-.teaser-desc { font-size: 0.95rem; margin-bottom: 1.25rem; }
+.teaser-desc { font-size: 0.95rem; margin: 0; }
 
-.teaser-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--gold);
-  text-decoration: none;
-  transition: color 0.2s var(--ease);
-}
-.teaser-link:hover { color: var(--gold-deep); }
-.teaser-link:hover .btn-arrow { transform: translateX(4px); }
+.teaser-cta { text-align: center; margin-top: 3.5rem; }
 
 /* ---------- Home: Quote band ---------- */
 .quote-band {
