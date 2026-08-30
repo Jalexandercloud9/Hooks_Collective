@@ -498,6 +498,50 @@ p:last-child { margin-bottom: 0; }
   margin-top: 1.5rem;
 }
 
+/* ---------- Page header (About, Services, Contact) ---------- */
+/* Page title + gold rule + one-line intro, used at the top of every
+   non-Home page. Header sits above this as a normal sibling (not nested,
+   unlike Home's hero) — on mobile it goes position:fixed, so this block
+   carries the top padding needed to clear it. */
+.page-header { padding: 6rem 0 4rem; background: var(--cream); }
+.page-intro {
+  max-width: 62ch;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+
+/* ---------- Services: card list ---------- */
+.services-list { padding: 0 0 6rem; background: var(--cream); }
+.service-cards { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.service-card {
+  display: grid;
+  grid-template-columns: 180px 1px 1fr;
+  align-items: start;
+  gap: 2.5rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 2.25rem 2.5rem;
+  transition: box-shadow 0.25s var(--ease);
+}
+.service-card:hover { box-shadow: 0 6px 24px rgba(20, 20, 20, 0.09); }
+
+.service-card-icon {
+  display: grid;
+  place-items: center;
+}
+.service-icon {
+  color: var(--gold);
+  width: 90px;
+  height: 90px;
+}
+
+.service-card-divider { align-self: stretch; width: 1px; background: var(--border); }
+
+.service-card-body .card-heading { margin-bottom: 0.9rem; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .cta-banner { padding: 2rem; }
@@ -564,6 +608,22 @@ p:last-child { margin-bottom: 0; }
   .teaser-grid { grid-template-columns: 1fr; gap: 2.75rem; }
 
   .quote-band { padding: 3.5rem 0; }
+
+  /* Page header: same fixed-nav clearance as .hero-section on Home. */
+  .page-header { padding: 6.5rem 0 3rem; }
+
+  /* Services cards: single column — icon on top (smaller), divider goes
+     from a full-height vertical line to a full-width horizontal rule. */
+  .services-list { padding-bottom: 3.5rem; }
+  .service-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 1.25rem;
+    padding: 2rem 1.5rem;
+  }
+  .service-icon { width: 64px; height: 64px; }
+  .service-card-divider { width: 100%; height: 1px; align-self: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
