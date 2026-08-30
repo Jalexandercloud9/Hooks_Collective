@@ -608,6 +608,14 @@ p:last-child { margin-bottom: 0; }
   align-items: start;
 }
 
+.contact-aside {
+  /* Matches .contact-form-card's own padding-top, so the first info row
+     lines up with "First name" rather than with the card's outer edge —
+     the grid's align-items: start only aligns the boxes, not what's
+     visually first inside each of them. */
+  padding-top: 2.5rem;
+}
+
 .contact-info-list {
   list-style: none;
   margin: 0 0 2rem;
@@ -804,6 +812,15 @@ p:last-child { margin-bottom: 0; }
   .contact-form-card { padding: 1.75rem 1.5rem; }
 }
 
+/* ---------- Scroll reveal ---------- */
+/* Toggled by IntersectionObserver in js/main.js. */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.visible { opacity: 1; transform: none; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -811,4 +828,5 @@ p:last-child { margin-bottom: 0; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .reveal { opacity: 1; transform: none; }
 }
