@@ -450,7 +450,9 @@ body.page-home .site-header.scrolled {
 }
 
 .hero-tagline {
-  font-size: clamp(1.075rem, 2.2vw, 1.35rem);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--body);
   max-width: 34ch;
