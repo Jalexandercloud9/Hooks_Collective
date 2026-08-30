@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — The Hooks Collective</title>
+  <meta name="description" content="Get in touch with The Hooks Collective about youth programming, workshops, training, or consulting." />
+  <meta name="theme-color" content="#C4873D" />
+
+  <!-- CUSTOMIZE: update og:url once the domain is live -->
+  <meta property="og:title" content="Contact — The Hooks Collective" />
+  <meta property="og:description" content="Get in touch with The Hooks Collective about youth programming, workshops, training, or consulting." />
+  <meta property="og:url" content="https://thehookscollective.com/contact.html" />
+  <meta property="og:type" content="website" />
+  <!-- CUSTOMIZE: add a real share image at assets/og-image.jpg (1200x630) -->
+  <meta property="og:image" content="assets/og-image.jpg" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23FAF4EF'/><circle cx='16' cy='16' r='10.5' fill='none' stroke='%23141414' stroke-width='1.5'/><text x='50%25' y='57%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia, serif' font-style='italic' font-weight='700' font-size='14' fill='%23141414'>H</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital@1&family=Sacramento&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- ============ HEADER / NAV ============ -->
+  <!-- CUSTOMIZE: this header block is duplicated on every page — any change
+       here must be copied to index.html, about.html, and services.html -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-mark" aria-hidden="true">H</span>
+        <span class="logo-text">
+          <span class="logo-script">The Hooks</span>
+          <span class="logo-sub">Collective</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ PAGE HEADER ============ -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-title">Contact</h1>
+        <hr class="rule-gold" />
+        <p class="page-intro">Whether you have a date on the calendar or just an idea taking shape, send a note and we&rsquo;ll figure out the right fit together.</p>
+      </div>
+    </section>
+
+    <!-- ============ LET'S CONNECT ============ -->
+    <section class="contact">
+      <div class="container contact-grid">
+
+        <div class="contact-aside reveal">
+          <ul class="contact-info-list">
+            <li>
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4.5 8-11a8 8 0 1 0-16 0c0 6.5 8 11 8 11z"/><circle cx="12" cy="11" r="3"/></svg>
+              <span>Serving Texas, Oklahoma, and virtual engagements nationwide</span>
+            </li>
+            <li>
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+              <!-- CUSTOMIZE: swap in the real professional email once it's set up -->
+              <span><a href="mailto:hello@thehookscollective.com">hello@thehookscollective.com</a></span>
+            </li>
+            <li>
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <span>Replies within two business days</span>
+            </li>
+          </ul>
+
+          <p class="contact-disclaimer">
+            <!-- CUSTOMIZE: confirm this wording with Allana -->
+            The Hooks Collective offers programming, training, consulting, and speaking. It is not a therapy practice and does not provide individual counseling or crisis services. If you are in crisis, call or text <strong>988</strong> to reach the Suicide &amp; Crisis Lifeline.
+          </p>
+        </div>
+
+        <div class="contact-form-wrap reveal">
+          <div class="contact-form-card">
+            <!-- CUSTOMIZE: form posts to Netlify Forms. In the Netlify dashboard, set the
+                 email notification address under Forms > Notifications. -->
+            <form class="contact-form" id="contactForm" name="inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+              <input type="hidden" name="form-name" value="inquiry" />
+              <p class="hidden-field">
+                <label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+              </p>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="firstName">First name</label>
+                  <input type="text" id="firstName" name="firstName" autocomplete="given-name" required />
+                </div>
+                <div class="field">
+                  <label for="lastName">Last name</label>
+                  <input type="text" id="lastName" name="lastName" autocomplete="family-name" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" autocomplete="email" required />
+              </div>
+
+              <div class="field">
+                <label for="organization">Organization <span class="optional">(optional)</span></label>
+                <input type="text" id="organization" name="organization" autocomplete="organization" />
+              </div>
+
+              <div class="field">
+                <label for="interest">I&rsquo;m interested in</label>
+                <select id="interest" name="interest" required>
+                  <option value="">Select one</option>
+                  <option>Youth Programming</option>
+                  <option>Community Workshops</option>
+                  <option>Professional Training</option>
+                  <option>Consulting</option>
+                  <option>Mental Health Advocacy</option>
+                  <option>Something Else</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="message">Tell me a little about it</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-outline btn-full">Send message <span class="btn-arrow" aria-hidden="true">&rarr;</span></button>
+              <p class="form-error" id="formError" role="alert"></p>
+            </form>
+
+            <div class="form-success" id="formSuccess" hidden>
+              <div class="form-success-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              </div>
+              <h3>Message sent</h3>
+              <p>Thank you for reaching out. I&rsquo;ll be in touch within two business days.</p>
+              <button type="button" class="btn btn-outline" id="sendAnother">Send another message</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <!-- CUSTOMIZE: this footer block is duplicated on every page — any change
+       here must be copied to index.html, about.html, and services.html -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark" aria-hidden="true">H</span>
+        <span class="logo-text">
+          <span class="logo-script">The Hooks</span>
+          <span class="logo-sub">Collective</span>
+        </span>
+      </a>
+
+      <ul class="footer-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <p class="footer-sub">Allana Jackson, Licensed Professional Counselor &middot; Texas &amp; Oklahoma</p>
+      <p class="footer-copy">&copy; <span id="year">2026</span> The Hooks Collective. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
