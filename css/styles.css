@@ -107,12 +107,16 @@ p:last-child { margin-bottom: 0; }
   margin: 0;
 }
 
-/* Gold rule — sits under every page title and section heading */
+/* Gold rule — sits under every page title and section heading. Left/right
+   margin is pinned to 0 so it sits flush under the first letter instead of
+   the browser's default <hr> centering (margin-inline: auto), which was
+   centering it under the full block width instead of the text. Contexts
+   that want it centered (e.g. .section-heading-row) override this. */
 .rule-gold {
   width: 56px;
   height: 3px;
   background: var(--gold);
-  margin-top: 1.25rem;
+  margin: 1.25rem 0 0;
   border: 0;
 }
 
