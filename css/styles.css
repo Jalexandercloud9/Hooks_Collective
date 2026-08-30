@@ -866,8 +866,6 @@ body.page-home .site-header.scrolled {
     margin: 0 0 0.7rem;
   }
 
-  /* Three buttons stack full-width instead of squeezing into one row. */
-  .hero-cta { flex-direction: column; gap: 0.55rem; }
   .hero-cta .btn { width: 100%; justify-content: center; padding: 0.7rem 1rem; font-size: 0.75rem; }
 
   .scroll-indicator { display: none; }
