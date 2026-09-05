@@ -88,6 +88,20 @@ p:last-child { margin-bottom: 0; }
 }
 .skip-link:focus { left: 0; }
 
+/* Visually hidden but still readable by screen readers / present for SEO —
+   e.g. About's <h1> now that the page no longer shows a large title. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---------- Typography scale ---------- */
 
 /* Page title (ABOUT, SERVICES, CONTACT) */
@@ -587,7 +601,11 @@ body.page-home .site-header.scrolled {
 .service-card-body .card-heading { margin-bottom: 0.9rem; }
 
 /* ---------- About ---------- */
-.about { padding: 0 0 6rem; background: var(--cream); }
+/* No .page-header on this page (the client asked to drop the large
+   "About" title), so .about carries its own top clearance — matching
+   what .page-header used to provide, including clearing the fixed
+   mobile nav (see the mobile override below). */
+.about { padding: 6rem 0 6rem; background: var(--cream); }
 
 .about-grid {
   display: grid;
@@ -608,6 +626,12 @@ body.page-home .site-header.scrolled {
   aspect-ratio: 3 / 4;
   object-fit: cover;
   border-radius: var(--radius-lg);
+}
+
+.about-portrait-caption {
+  font-size: 1.35rem;
+  text-align: center;
+  margin: 1.5rem 0 0;
 }
 
 /* Mixed script/caps heading: "Meet ALLANA", "Our STORY" — the two spans
@@ -664,6 +688,17 @@ body.page-home .site-header.scrolled {
 .contact-icon { flex: none; width: 24px; height: 24px; color: var(--gold); margin-top: 0.1rem; }
 .contact-info-list a { color: var(--gold); text-decoration: none; }
 .contact-info-list a:hover { color: var(--gold-deep); text-decoration: underline; }
+
+.contact-location { display: flex; flex-direction: column; gap: 0.2rem; }
+.contact-location-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+.contact-location-sub { color: var(--body); }
 
 .contact-disclaimer {
   background: var(--cream-deep);
@@ -866,6 +901,7 @@ body.page-home .site-header.scrolled {
 
   /* Page header: same fixed-nav clearance as .hero on Home. */
   .page-header { padding: 6.5rem 0 3rem; }
+  .about { padding-top: 6.5rem; }
 
   /* Services cards: single column — icon on top (smaller), divider goes
      from a full-height vertical line to a full-width horizontal rule. */
