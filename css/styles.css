@@ -25,7 +25,7 @@
 
   --font-display: 'Oswald', 'Arial Narrow', sans-serif;
   --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-script: 'Yellowtail', cursive;
+  --font-script: 'Beau Rivage', cursive;
   --font-italic: 'Playfair Display', Georgia, serif;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -645,6 +645,10 @@ body.page-home .site-header.scrolled {
   letter-spacing: normal;
   color: var(--gold);
   font-size: 3rem;
+  /* The script font's own trailing space glyph isn't wide enough to read
+     as a gap before the caps word that follows — force one explicitly. */
+  margin-right: 0.25rem;
+  display: inline-block;
 }
 .mixed-heading .heading-caps { font-size: 2.75rem; color: var(--ink); }
 
