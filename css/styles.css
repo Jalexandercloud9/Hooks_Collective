@@ -634,34 +634,54 @@ body.page-home .site-header.scrolled {
   margin: 1.5rem 0 0;
 }
 
-/* Mixed script/caps heading: "Meet ALLANA", "Our STORY" — the two spans
-   share a baseline because that's how adjacent inline elements lay out
-   by default, no flex/grid trickery needed. */
-.mixed-heading { margin: 0 0 1.75rem; }
-.mixed-heading .heading-script {
-  font-family: var(--font-script);
+/* About-only script accents (Pinyon Script / Corinthia) — loaded via
+   about.html's own Google Fonts <link>, not the shared one, so these
+   two families never reach any other page. */
+.brand-script-pinyon {
+  font-family: 'Pinyon Script', cursive;
   font-weight: 400;
-  text-transform: none;
-  letter-spacing: normal;
+  font-style: normal;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
   color: var(--gold);
-  font-size: 3rem;
-  /* The script font's own trailing space glyph isn't wide enough to read
-     as a gap before the caps word that follows — force one explicitly. */
-  margin-right: 0.25rem;
-  display: inline-block;
 }
-.mixed-heading .heading-caps { font-size: 2.75rem; color: var(--ink); }
+
+.brand-script-corinthia {
+  font-family: 'Corinthia', cursive;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.3;
+  color: var(--gold);
+}
+
+/* Mixed script/caps heading: "Meet ALLANA", "Our STORY" — a flex row so
+   the two differently-sized words share a baseline regardless of each
+   font's own metrics. */
+.about-mixed-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+.about-mixed-heading .brand-script-pinyon { font-size: clamp(2.8rem, 5vw, 3.5rem); }
+.about-heading-word {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 4vw, 2.4rem);
+  color: var(--ink);
+}
 
 .about-lead { font-size: 1.05rem; }
 .about-emphasis { font-weight: 500; color: var(--ink); }
 
-.about-signoff {
-  display: block;
-  font-family: var(--font-script);
-  font-size: 1.75rem;
-  color: var(--gold);
+.about-signature {
   margin-top: 1.5rem;
+  /* Corinthia's descenders (the tails on "y", the flourish under the
+     dash) can get clipped by the following element without this. */
+  padding-bottom: 0.2em;
 }
+.about-signature .brand-script-corinthia { font-size: clamp(1.8rem, 3vw, 2.4rem); }
 
 /* ---------- Contact ---------- */
 .contact { padding: 0 0 6rem; background: var(--cream); }
