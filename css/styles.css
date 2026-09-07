@@ -664,6 +664,10 @@ body.page-home .site-header.scrolled {
   flex-wrap: wrap;
 }
 .about-mixed-heading .brand-script-pinyon { font-size: clamp(2.8rem, 5vw, 3.5rem); }
+
+/* Pull the gold rule up close under "Meet"/"Our" — the base .rule-gold
+   margin-top (1.25rem) reads as floating, disconnected from either word. */
+.about-mixed-heading + .rule-gold { margin-top: 0.4rem; }
 .about-heading-word {
   font-family: var(--font-display);
   font-weight: 700;
