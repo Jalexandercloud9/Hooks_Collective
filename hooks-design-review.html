@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Hooks Collective — Design Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Pinyon+Script&family=Corinthia&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;background:#2A2A2A;padding:2.5rem 1rem;min-height:100vh}
+
+.review-header{text-align:center;margin-bottom:2.5rem}
+.review-header h1{font-family:'Oswald',sans-serif;font-size:0.9rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#C4873D;margin-bottom:0.4rem}
+.review-header p{font-size:0.72rem;color:rgba(255,255,255,0.45);font-weight:300}
+
+.pages{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;align-items:flex-start}
+.page-wrap{display:flex;flex-direction:column;align-items:center;gap:0.6rem}
+.page-label{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-weight:500}
+.page{width:375px;background:#FAF4EF;border-radius:0;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+
+/* NAV — real logo images, exact match to live site */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:#FAF4EF}
+.nav-logo{display:flex;align-items:center;gap:0.6rem;text-decoration:none}
+.nav-logo .lmark{height:38px;width:auto}
+.nav-logo .lword{height:27px;width:auto}
+.hamburger{display:flex;flex-direction:column;gap:4px;cursor:pointer}
+.hamburger span{width:20px;height:1.5px;background:#141414;display:block}
+
+/* SHARED */
+.eyebrow{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:#C4873D;font-weight:500;margin-bottom:0.45rem}
+.gold-rule{width:44px;height:3px;background:#C4873D;margin:0.65rem 0}
+.page-title{font-family:'Oswald',sans-serif;font-size:2.1rem;font-weight:700;text-transform:uppercase;color:#141414;line-height:0.95;letter-spacing:-0.005em}
+.intro-text{font-size:0.73rem;font-weight:300;color:#443F3B;line-height:1.7}
+
+/* Script accent classes — same system as approved Pinyon/Corinthia prompt */
+.brand-script-pinyon{font-family:'Pinyon Script',cursive;font-weight:400;color:#C4873D;line-height:1.3;letter-spacing:0.01em}
+.brand-script-corinthia{font-family:'Corinthia',cursive;font-weight:400;color:#C4873D;line-height:1.4}
+.mixed-heading{display:flex;align-items:baseline;gap:1.1rem;flex-wrap:wrap}
+.mixed-heading .brand-script-pinyon{font-size:2.6rem}
+.mixed-heading .disp-word{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;color:#141414;font-size:1.9rem;letter-spacing:-0.005em}
+
+/* BUTTONS */
+.btn-outline{display:inline-flex;align-items:center;gap:0.4rem;border:1.5px solid #141414;color:#141414;font-size:0.64rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:0.65rem 1.15rem;border-radius:2px;text-decoration:none;font-family:'Poppins',sans-serif}
+.btn-gold{display:inline-flex;align-items:center;gap:0.4rem;background:#C4873D;color:#141414;font-size:0.64rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:0.6rem 1.1rem;border-radius:3px;text-decoration:none;font-family:'Poppins',sans-serif}
+
+/* DARK FOOTER — logo inverted white */
+.dark-footer{background:#141414;padding:1.4rem 1.25rem 1.1rem}
+.footer-logo{display:flex;align-items:center;gap:0.55rem;justify-content:center;margin-bottom:0.9rem}
+.footer-logo .lmark{height:26px;width:auto;filter:brightness(0) invert(1);opacity:0.8}
+.footer-logo .lword{height:18px;width:auto;filter:brightness(0) invert(1);opacity:0.8}
+.footer-nav{display:flex;justify-content:center;gap:1.2rem;margin-bottom:0.8rem}
+.footer-nav a{font-size:0.57rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,244,239,0.6);font-weight:500;text-decoration:none}
+.footer-icons{display:flex;justify-content:center;gap:0.6rem;margin-bottom:0.85rem}
+.footer-icon{width:27px;height:27px;border-radius:50%;border:1px solid rgba(250,244,239,0.2);display:grid;place-items:center}
+.footer-icon svg{width:12px;height:12px;stroke:rgba(250,244,239,0.6);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.footer-copy{font-size:0.54rem;color:rgba(250,244,239,0.35);text-align:center;line-height:1.7}
+
+/* HOME */
+.hero-photo{width:100%;height:280px;object-fit:cover;object-position:center 38%;display:block}
+.hero-content{padding:1.4rem 1.25rem 1.5rem;background:#FAF4EF}
+.hero-eyebrow{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:#C4873D;font-weight:500;margin-bottom:0.65rem}
+.hero-h1{font-family:'Oswald',sans-serif;font-size:2.3rem;font-weight:700;text-transform:uppercase;color:#141414;line-height:0.95;letter-spacing:-0.01em;margin-bottom:0.6rem}
+.hero-making{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:#141414;margin-bottom:0.05rem}
+.hero-script .brand-script-pinyon{font-size:1.8rem}
+.hero-tagline{font-size:0.73rem;font-weight:300;color:#443F3B;line-height:1.7;margin:0.75rem 0 1.2rem}
+
+.what-we-do{padding:1.4rem 1.25rem 1.25rem;background:#FAF4EF;border-top:1px solid #EDE3D8}
+.teaser-cards{display:flex;flex-direction:column;gap:0.55rem;margin-top:1rem}
+.teaser-card{background:#F2E8DC;border-radius:8px;padding:0.85rem 1rem;display:flex;gap:0.75rem;align-items:flex-start}
+.t-icon{width:36px;height:36px;border-radius:50%;background:rgba(196,135,61,0.16);display:grid;place-items:center;flex:none}
+.t-icon svg{width:17px;height:17px;stroke:#C4873D;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.t-title{font-family:'Oswald',sans-serif;font-size:0.73rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:#141414;margin-bottom:0.2rem}
+.t-text{font-size:0.66rem;font-weight:300;color:#443F3B;line-height:1.6}
+.view-all{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.65rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#C4873D;margin-top:0.9rem;text-decoration:none}
+
+.quote-band{background:#F2E8DC;padding:1.6rem 1.4rem;text-align:center}
+.quote-band blockquote{font-family:'Oswald',sans-serif;font-size:1.05rem;font-weight:600;color:#141414;line-height:1.3;margin-bottom:0.5rem}
+.quote-band cite{font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:#C4873D;font-weight:500;font-style:normal}
+
+.home-cta{background:#141414;margin:1rem;border-radius:10px;padding:1.1rem 1.15rem}
+.home-cta-title{font-family:'Oswald',sans-serif;font-size:0.92rem;font-weight:600;color:#FAF4EF;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.3rem}
+.home-cta-sub{font-size:0.65rem;color:rgba(250,244,239,0.55);font-weight:300;margin-bottom:0.75rem;line-height:1.6}
+
+/* ABOUT */
+.about-header{padding:1.4rem 1.25rem 1rem}
+.about-photo{width:100%;height:320px;object-fit:cover;object-position:center top;display:block}
+.about-cols{padding:1.25rem 1.25rem;display:flex;flex-direction:column;gap:1.4rem}
+.about-body p{font-size:0.72rem;font-weight:300;color:#443F3B;line-height:1.75;margin-bottom:0.65rem}
+.about-body p:last-child{margin-bottom:0}
+.about-body strong{font-weight:500;color:#141414}
+.about-sig{margin-top:0.85rem}
+.about-sig .brand-script-corinthia{font-size:2rem}
+.about-cta{background:#F2E8DC;margin:0 1.1rem 1.1rem;border-radius:10px;padding:1.1rem 1.15rem;text-align:center}
+.about-cta-q{font-family:'Oswald',sans-serif;font-size:0.88rem;font-weight:600;color:#141414;margin-bottom:0.5rem;line-height:1.3}
+.about-cta-sub{font-size:0.7rem;font-weight:300;color:#443F3B;line-height:1.65;margin-bottom:0.85rem}
+
+/* SERVICES */
+.svc-header{padding:1.4rem 1.25rem 1rem}
+.cards{padding:0 1rem;display:flex;flex-direction:column;gap:0.55rem;margin-bottom:1rem}
+.svc-card{background:#F2E8DC;border-radius:10px;padding:0.9rem 1rem;display:flex;align-items:flex-start;gap:0.8rem}
+.icon-badge{width:44px;height:44px;border-radius:50%;background:rgba(196,135,61,0.16);display:grid;place-items:center;flex:none}
+.icon-badge svg{width:21px;height:21px;stroke:#C4873D;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.card-body{flex:1;min-width:0}
+.card-title{font-family:'Oswald',sans-serif;font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:#141414;margin-bottom:0.28rem}
+.card-text{font-size:0.67rem;font-weight:300;color:#443F3B;line-height:1.65}
+.arrow-btn{width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(196,135,61,0.4);display:grid;place-items:center;flex:none;margin-top:2px}
+.arrow-btn svg{width:11px;height:11px;stroke:#C4873D;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.svc-card.highlight{background:#C4873D}
+.highlight .icon-badge{background:rgba(255,255,255,0.2)}
+.highlight .icon-badge svg,.highlight .arrow-btn svg{stroke:#fff}
+.highlight .card-title{color:#fff}
+.highlight .card-text{color:rgba(255,255,255,0.88)}
+.highlight .arrow-btn{border-color:rgba(255,255,255,0.32)}
+.cta-bar{background:#141414;margin:0 1rem 1rem;border-radius:10px;padding:1.05rem 1.15rem}
+.cta-bar-q .brand-script-corinthia{color:#FAF4EF;font-size:1.5rem}
+.cta-bar-sub{font-size:0.63rem;color:rgba(250,244,239,0.52);font-weight:300;margin:0.25rem 0 0.7rem;line-height:1.6}
+
+/* CONTACT */
+.contact-intro{padding:1.4rem 1.25rem 0}
+.contact-h1{font-family:'Oswald',sans-serif;font-size:1.6rem;font-weight:700;color:#141414;line-height:1.05;margin-bottom:0.1rem}
+.contact-script{display:block;margin-top:0.1rem}
+.contact-script .brand-script-pinyon{font-size:1.9rem}
+.contact-sub{font-size:0.72rem;font-weight:300;color:#443F3B;line-height:1.7;padding:0.7rem 1.25rem 1rem}
+.form-card{background:#141414;margin:0 1rem 1rem;border-radius:14px;padding:1.2rem 1.05rem}
+.field{margin-bottom:0.75rem}
+.field label{display:block;font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(250,244,239,0.62);font-weight:500;margin-bottom:0.26rem}
+.field label .opt{color:rgba(250,244,239,0.3);font-size:0.5rem}
+.field input,.field select,.field textarea{width:100%;background:#FAF4EF;border:none;border-radius:4px;padding:0.57rem 0.7rem;font-size:0.73rem;color:#141414;font-family:'Poppins',sans-serif;outline:none}
+.field select{color:#6B645E;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236B645E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.7rem center;padding-right:1.9rem}
+.field textarea{height:66px;resize:none}
+.send-btn{width:100%;background:#C4873D;border:none;color:#141414;font-family:'Poppins',sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:0.8rem;border-radius:4px;cursor:pointer;margin-top:0.1rem}
+.form-div{height:1px;background:rgba(250,244,239,0.1);margin:0.95rem 0 0.7rem}
+.form-quote{text-align:center}
+.form-quote .brand-script-corinthia{font-size:1.25rem;color:rgba(250,244,239,0.78)}
+
+/* SVGs */
+svg{display:block}
+</style>
+</head>
+<body>
+
+<div class="review-header">
+  <h1>The Hooks Collective — Design Review</h1>
+  <p>Proposed updates for Allana's approval · Open this file from inside your local repo so images load correctly</p>
+</div>
+
+<div class="pages">
+
+<!-- ═══ HOME ═══ -->
+<div class="page-wrap">
+  <p class="page-label">Home</p>
+  <div class="page">
+    <div class="nav">
+      <a class="nav-logo" href="#">
+        <img class="lmark" src="assets/logo-mark-dark.png" alt=""/>
+        <img class="lword" src="assets/logo-wordmark-dark.png" alt="The Hooks Collective"/>
+      </a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+
+    <img class="hero-photo" src="assets/hero.jpg" alt="Open notebook reading your story isn't over"/>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Licensed Professional Counselor · Texas &amp; Oklahoma</p>
+      <h1 class="hero-h1">The Hooks<br>Collective</h1>
+      <p class="hero-making">Making room for</p>
+      <p class="hero-script"><span class="brand-script-pinyon">conversations that matter.</span></p>
+      <p class="hero-tagline">We partner with communities, organizations, and schools to make mental health discussions easier.</p>
+      <a class="btn-outline" href="#">Explore Our Services →</a>
+    </div>
+
+    <div class="what-we-do">
+      <p class="eyebrow">What we do</p>
+      <div class="mixed-heading">
+        <span class="brand-script-pinyon">Our</span>
+        <span class="disp-word">Services</span>
+      </div>
+      <div class="gold-rule"></div>
+      <div class="teaser-cards">
+        <div class="teaser-card">
+          <div class="t-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="2.5"/><path d="M3 20v-1a6 6 0 0 1 12 0v1"/><circle cx="18" cy="8" r="2"/><path d="M21 19v-.5a4 4 0 0 0-3-3.87"/></svg></div>
+          <div><p class="t-title">Youth Programming</p><p class="t-text">Interactive programs that give young people a safe space to talk openly, build practical skills, and explore the challenges affecting their everyday lives.</p></div>
+        </div>
+        <div class="teaser-card">
+          <div class="t-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+          <div><p class="t-title">Community Workshops</p><p class="t-text">Engaging workshops and guided conversations that bring mental health and emotional wellness into schools, churches, and community organizations.</p></div>
+        </div>
+        <div class="teaser-card">
+          <div class="t-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <div><p class="t-title">Professional Training</p><p class="t-text">Practical training for educators and youth-serving professionals who want to better understand and support the people they serve.</p></div>
+        </div>
+      </div>
+      <a class="view-all" href="#">View all services →</a>
+    </div>
+
+    <div class="quote-band">
+      <blockquote>"Where a story begins doesn't have to determine where it ends."</blockquote>
+      <cite>— Allana Jackson, LPC</cite>
+    </div>
+
+    <div class="home-cta">
+      <p class="home-cta-title">Let's build something meaningful together.</p>
+      <p class="home-cta-sub">Whether it's a program, a partnership, or just an idea taking shape, we'd love to hear from you.</p>
+      <a class="btn-gold" href="#">Let's Connect →</a>
+    </div>
+
+    <div class="dark-footer">
+      <div class="footer-logo">
+        <img class="lmark" src="assets/logo-mark-dark.png" alt=""/>
+        <img class="lword" src="assets/logo-wordmark-dark.png" alt="The Hooks Collective"/>
+      </div>
+      <div class="footer-nav"><a href="#">Home</a><a href="#">About</a><a href="#">Services</a><a href="#">Contact</a></div>
+      <div class="footer-icons">
+        <div class="footer-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="rgba(250,244,239,0.6)"/></svg></div>
+        <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M3 8l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div>
+      </div>
+      <p class="footer-copy">Allana Jackson, Licensed Professional Counselor · Texas &amp; Oklahoma<br>© 2026 The Hooks Collective. All rights reserved.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<div class="page-wrap">
+  <p class="page-label">About</p>
+  <div class="page">
+    <div class="nav">
+      <a class="nav-logo" href="#">
+        <img class="lmark" src="assets/logo-mark-dark.png" alt=""/>
+        <img class="lword" src="assets/logo-wordmark-dark.png" alt="The Hooks Collective"/>
+      </a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+
+    <div class="about-header">
+      <p class="eyebrow">Get to know us</p>
+      <h1 class="page-title">About</h1>
+      <div class="gold-rule"></div>
+    </div>
+
+    <img class="about-photo" src="assets/allana-about.jpeg" alt="Allana Jackson, Licensed Professional Counselor"/>
+
+    <div class="about-cols">
+      <div>
+        <div class="mixed-heading" style="margin-bottom:0.55rem">
+          <span class="brand-script-pinyon">Meet</span>
+          <span class="disp-word">Allana</span>
+        </div>
+        <div class="gold-rule"></div>
+        <div class="about-body">
+          <p>I'm a Licensed Professional Counselor and founder of The Hooks Collective. Much of what I believe about this work has been shaped by the people I've had the privilege of serving.</p>
+          <p>My experience has taken me across schools, juvenile justice, and community settings. While much of my professional work has centered on adolescents and young adults, I've also worked alongside families, educators, professionals, and community members.</p>
+          <p><strong>For me, being trauma-informed isn't about defining someone by what they've been through; it's about making room for the whole person and all that they can become.</strong></p>
+          <p>While some of this work begins with difficult stories, I don't believe that's where it has to end. That's what The Hooks Collective represents to me: the opportunity to honor the stories people carry while creating space for the ones still being written.</p>
+        </div>
+        <div class="about-sig"><span class="brand-script-corinthia">— Allana</span></div>
+      </div>
+
+      <div>
+        <div class="mixed-heading" style="margin-bottom:0.55rem">
+          <span class="brand-script-pinyon">Our</span>
+          <span class="disp-word">Story</span>
+        </div>
+        <div class="gold-rule"></div>
+        <div class="about-body">
+          <p>I named The Hooks Collective in honor of my great-great-grandfather, <strong>Joseph Hooks</strong>, whose experience with mental illness became part of our family's story.</p>
+          <p>He lived during a time when conversations about mental health — particularly within Black families and communities — were often met with silence, stigma, and limited understanding. Generations later, I have the opportunity to help create something different.</p>
+          <p><strong>The Hooks Collective honors his legacy by making room for conversations that haven't always had a place.</strong></p>
+          <p>For me, carrying the Hooks name is both an honor and a responsibility.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-cta">
+      <p class="about-cta-q">"When we create space for conversation, we create space for change."</p>
+      <p class="about-cta-sub">Curious what working together looks like? Explore the programs, workshops, training, and consulting The Hooks Collective offers.</p>
+      <a class="btn-gold" href="#">View Services →</a>
+    </div>
+
+    <div class="dark-footer">
+      <div class="footer-logo">
+        <img class="lmark" src="assets/logo-mark-dark.png" alt=""/>
+        <img class="lword" src="assets/logo-wordmark-dark.png" alt="The Hooks Collective"/>
+      </div>
+      <div class="footer-nav"><a href="#">Home</a><a href="#">About</a><a href="#">Services</a><a href="#">Contact</a></div>
+      <div class="footer-icons">
+        <div class="footer-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="rgba(250,244,239,0.6)"/></svg></div>
+        <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M3 8l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div>
+      </div>
+      <p class="footer-copy">Allana Jackson, Licensed Professional Counselor · Texas &amp; Oklahoma<br>© 2026 The Hooks Collective. All rights reserved.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<div class="page-wrap">
+  <p class="page-label">Services — updated</p>
+  <div class="page">
+    <div class="nav">
+      <a class="nav-logo" href="#">
+        <img class="lmark" src="assets/logo-mark-dark.png" alt=""/>
+        <img class="lword" src="assets/logo-wordmark-dark.png" alt="The Hooks Collective"/>
+      </a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+
+    <div class="svc-header">
+      <p class="eyebrow">What we offer</p>
+      <h1 class="page-title">Services</h1>
+      <div class="gold-rule"></div>
+      <p class="intro-text">The Hooks Collective partners with communities, schools, organizations, and professionals to create thoughtful, engaging experiences centered on mental health and connection.</p>
+    </div>
+
+    <div class="cards">
+      <div class="svc-card">
+        <div class="icon-badge"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="2.5"/><path d="M3 20v-1a6 6 0 0 1 12 0v1"/><circle cx="18" cy="8" r="2"/><path d="M21 19v-.5a4 4 0 0 0-3-3.87"/></svg></div>
+        <div class="card-body"><p class="card-title">Youth Programming</p><p class="card-text">Interactive programs that give young people a safe space to talk openly, build practical skills, and explore the challenges affecting their everyday lives.</p></div>
+        <div class="arrow-btn"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="svc-card">
+        <div class="icon-badge"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="M8 9h5M8 12h3"/></svg></div>
+        <div class="card-body"><p class="card-title">Community Workshops</p><p class="card-text">Engaging workshops and guided conversations that bring mental health and emotional wellness into schools, churches, and community organizations.</p></div>
+        <div class="arrow-btn"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="svc-card">
+        <div class="icon-badge"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <div class="card-body"><p class="card-title">Professional Training</p><p class="card-text">Practical training for educators, school teams, and youth-serving professionals who want to better understand, engage, and support the people they serve.</p></div>
+        <div class="arrow-btn"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="svc-card highlight">
+        <div class="icon-badge"><svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div>
+        <div class="card-body"><p class="card-title">Consulting</p><p class="card-text">Collaborative support for schools, organizations, and community partners looking to develop, strengthen, or rethink programs and initiatives with the people they serve at the center.</p></div>
+        <div class="arrow-btn"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="svc-card">
+        <div class="icon-badge"><svg viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M19 5a10 10 0 0 1 0 14"/></svg></div>
+        <div class="card-body"><p class="card-title">Mental Health Advocacy</p><p class="card-text">Speaking, partnerships, and community initiatives that move mental health conversations forward, increase understanding, challenge stigma, and bring greater attention to communities where access and representation still matter.</p></div>
+        <div class="arrow-btn"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+    </div>
+
+    <div class="cta-bar">
+      <div class="cta-bar-q"><span class="brand-script-corinthia" style="color:#FAF4EF;font-size:1.5rem">Different spaces. Same purpose.</span></div>
+      <p class="cta-bar-sub">There may be another way The Hooks Collective can support you.</p>
+      <a class="btn-gold" href="#">Let's Connect →</a>
+    </div>
+
+    <div class="dark-footer">
+      <div class="footer-logo">
+        <img class="lmark" src="assets/logo-mark-dark.png" alt=""/>
+        <img class="lword" src="assets/logo-wordmark-dark.png" alt="The Hooks Collective"/>
+      </div>
+      <div class="footer-nav"><a href="#">Home</a><a href="#">About</a><a href="#">Services</a><a href="#">Contact</a></div>
+      <div class="footer-icons">
+        <div class="footer-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="rgba(250,244,239,0.6)"/></svg></div>
+        <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M3 8l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div>
+      </div>
+      <p class="footer-copy">Allana Jackson, Licensed Professional Counselor · Texas &amp; Oklahoma<br>© 2026 The Hooks Collective. All rights reserved.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div class="page-wrap">
+  <p class="page-label">Contact — updated</p>
+  <div class="page">
+    <div class="nav">
+      <a class="nav-logo" href="#">
+        <img class="lmark" src="assets/logo-mark-dark.png" alt=""/>
+        <img class="lword" src="assets/logo-wordmark-dark.png" alt="The Hooks Collective"/>
+      </a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+
+    <div class="contact-intro">
+      <p class="eyebrow">Get in touch</p>
+      <h1 class="contact-h1">Let's Build Something Meaningful
+        <span class="contact-script"><span class="brand-script-pinyon">Together.</span></span>
+      </h1>
+    </div>
+    <p class="contact-sub">Whether you have a date on the calendar or just an idea taking shape, we'd love to hear from you.</p>
+
+    <div class="form-card">
+      <div class="field"><label>Name</label><input type="text"/></div>
+      <div class="field"><label>Email</label><input type="email"/></div>
+      <div class="field"><label>Organization <span class="opt">(optional)</span></label><input type="text"/></div>
+      <div class="field"><label>I'm interested in</label>
+        <select><option>Select one</option><option>Youth Programming</option><option>Community Workshops</option><option>Professional Training</option><option>Consulting</option><option>Speaking Engagement</option><option>Something Else</option></select>
+      </div>
+      <div class="field"><label>Tell me a little about it</label><textarea></textarea></div>
+      <button class="send-btn">Send Message →</button>
+      <div class="form-div"></div>
+      <div class="form-quote"><span class="brand-script-corinthia">Conversations create change.<br>Let's start one.</span></div>
+    </div>
+
+    <div class="dark-footer">
+      <div class="footer-logo">
+        <img class="lmark" src="assets/logo-mark-dark.png" alt=""/>
+        <img class="lword" src="assets/logo-wordmark-dark.png" alt="The Hooks Collective"/>
+      </div>
+      <div class="footer-nav"><a href="#">Home</a><a href="#">About</a><a href="#">Services</a><a href="#">Contact</a></div>
+      <div class="footer-icons">
+        <div class="footer-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="rgba(250,244,239,0.6)"/></svg></div>
+        <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M3 8l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div>
+      </div>
+      <p class="footer-copy">Rooted in Texas &amp; Oklahoma. Available nationwide.<br>© 2026 The Hooks Collective. All rights reserved.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
