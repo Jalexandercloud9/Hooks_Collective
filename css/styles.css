@@ -117,7 +117,7 @@ p:last-child { margin-bottom: 0; }
   text-transform: uppercase;
   letter-spacing: -0.005em;
   font-size: 1.5rem;
-  color: var(--ink);
+  color: var(--gold);
   margin: 0;
 }
 
@@ -722,8 +722,7 @@ body.page-home .site-header.scrolled {
 }
 
 .contact-form-card {
-  background: var(--white);
-  border: 1px solid var(--border);
+  background: var(--ink);
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
   padding: 2.5rem;
@@ -739,19 +738,19 @@ body.page-home .site-header.scrolled {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--ink);
+  color: rgba(250, 244, 239, 0.7);
   margin-bottom: 0.6rem;
 }
-.contact-form .optional { text-transform: none; letter-spacing: normal; font-weight: 400; color: var(--muted); }
+.contact-form .optional { text-transform: none; letter-spacing: normal; font-weight: 400; color: rgba(250, 244, 239, 0.4); }
 
 .contact-form input,
 .contact-form select,
 .contact-form textarea {
   width: 100%;
   padding: 0.8rem 1rem;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: 2px;
-  background: var(--white);
+  background: var(--cream);
   font-family: var(--font-body);
   font-size: 0.9rem;
   color: var(--ink);
@@ -763,7 +762,7 @@ body.page-home .site-header.scrolled {
 .contact-form textarea:focus {
   outline: none;
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(196, 135, 61, 0.18);
+  box-shadow: 0 0 0 3px rgba(196, 135, 61, 0.28);
 }
 .contact-form .invalid { border-color: #b3382c; }
 
@@ -772,7 +771,7 @@ body.page-home .site-header.scrolled {
 .form-error {
   min-height: 1.2em;
   font-size: 0.85rem;
-  color: #b3382c;
+  color: #ff8a75;
   margin: 0.75rem 0 0;
 }
 
@@ -793,10 +792,10 @@ body.page-home .site-header.scrolled {
   font-weight: 600;
   text-transform: uppercase;
   font-size: 1.35rem;
-  color: var(--ink);
+  color: var(--cream);
   margin-bottom: 0.75rem;
 }
-.form-success p { margin-bottom: 1.5rem; }
+.form-success p { margin-bottom: 1.5rem; color: rgba(250, 244, 239, 0.75); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
