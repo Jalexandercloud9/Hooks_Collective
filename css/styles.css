@@ -756,6 +756,26 @@ body.page-home .site-header.scrolled {
   color: var(--ink);
   transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
+
+/* Fixed +1 prefix (US-only for now) sits flush against the phone input,
+   sharing one visual pill rather than looking like two separate fields. */
+.phone-field { display: flex; align-items: stretch; }
+.phone-prefix {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 0 0.9rem;
+  background: var(--cream);
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  border: 1px solid transparent;
+  border-right: 1px solid var(--border);
+  border-radius: 2px 0 0 2px;
+}
+.phone-field input {
+  border-radius: 0 2px 2px 0;
+}
 .contact-form textarea { resize: vertical; }
 .contact-form input:focus,
 .contact-form select:focus,

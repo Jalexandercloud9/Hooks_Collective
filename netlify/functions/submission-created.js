@@ -59,6 +59,7 @@ exports.handler = async (event) => {
     <table cellpadding="0" cellspacing="0" style="max-width:600px;">
       ${row('Name', fullName)}
       ${row('Email', data.email)}
+      ${row('Phone', data.phone ? `+1 ${data.phone}` : '')}
       ${row('Organization', data.organization)}
       ${row('Interested in', data.interest)}
       ${row('Message', data.message)}
