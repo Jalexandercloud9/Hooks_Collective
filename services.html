@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital@1&family=Beau+Rivage&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/styles.css?v=202609230116" />
+  <link rel="stylesheet" href="css/styles.css?v=202610032045" />
 </head>
 <body>
 
@@ -52,17 +52,29 @@
 
   <main id="main">
 
-    <!-- ============ PAGE HEADER ============ -->
-    <section class="page-header">
+    <!-- ============ HERO PHOTO (Front Porch Conversations) ============ -->
+    <!-- CUSTOMIZE: plain photo banner, no overlaid text of our own — the
+         photo's own "Front Porch Conversations" signage is the message
+         here, so the page title sits in its own band right below it
+         instead of competing with it. -->
+    <section class="services-hero">
+      <img src="assets/services-hero-banner.jpg" alt="Allana Jackson smiling beside the Front Porch Conversations sign" class="services-hero-img" />
+    </section>
+
+    <!-- ============ PAGE TITLE ============ -->
+    <section class="services-title">
       <div class="container">
         <h1 class="page-title">Services</h1>
         <p class="page-intro">The Hooks Collective partners with communities, schools, organizations, and professionals to create thoughtful, engaging experiences centered on mental health and connection.</p>
       </div>
     </section>
 
-    <!-- ============ SERVICE CARDS ============ -->
+    <!-- ============ SERVICE CARDS (podium photo + 3/2 grid) ============ -->
     <section class="services-list">
-      <div class="container">
+      <div class="container services-list-grid">
+        <div class="services-podium reveal">
+          <img src="assets/services-speaking.jpg" alt="Allana Jackson speaking at a podium" class="services-podium-img" />
+        </div>
         <div class="service-cards">
 
           <article class="service-card reveal">
@@ -198,7 +210,7 @@
   </footer>
 
 
-  <script src="js/main.js?v=202609230116"></script>
+  <script src="js/main.js?v=202610032045"></script>
 
 </body>
 </html>
