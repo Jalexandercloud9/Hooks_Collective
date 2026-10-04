@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital@1&family=Beau+Rivage&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/styles.css?v=202610032045" />
+  <link rel="stylesheet" href="css/styles.css?v=202610041530" />
 </head>
 <body>
 
@@ -52,29 +52,25 @@
 
   <main id="main">
 
-    <!-- ============ HERO PHOTO (Front Porch Conversations) ============ -->
-    <!-- CUSTOMIZE: plain photo banner, no overlaid text of our own — the
-         photo's own "Front Porch Conversations" signage is the message
-         here, so the page title sits in its own band right below it
-         instead of competing with it. -->
-    <section class="services-hero">
-      <img src="assets/services-hero-banner.jpg" alt="Allana Jackson smiling beside the Front Porch Conversations sign" class="services-hero-img" />
-    </section>
-
-    <!-- ============ PAGE TITLE ============ -->
-    <section class="services-title">
-      <div class="container">
-        <h1 class="page-title">Services</h1>
-        <p class="page-intro">The Hooks Collective partners with communities, schools, organizations, and professionals to create thoughtful, engaging experiences centered on mental health and connection.</p>
+    <!-- ============ PAGE TITLE + PODIUM PHOTO ============ -->
+    <!-- CUSTOMIZE: Services stays the first thing on the page per Allana's
+         note — title and intro beside the (vertical) podium photo, rather
+         than a full-width photo banner pushing the title down. -->
+    <section class="services-intro">
+      <div class="container services-intro-grid">
+        <div class="services-intro-text">
+          <h1 class="page-title">Services</h1>
+          <p class="page-intro">The Hooks Collective partners with communities, schools, organizations, and professionals to create thoughtful, engaging experiences centered on mental health and connection.</p>
+        </div>
+        <div class="services-intro-media reveal">
+          <img src="assets/services-speaking.jpg" alt="Allana Jackson speaking at a podium" class="services-intro-img" />
+        </div>
       </div>
     </section>
 
-    <!-- ============ SERVICE CARDS (podium photo + 3/2 grid) ============ -->
+    <!-- ============ SERVICE CARDS ============ -->
     <section class="services-list">
-      <div class="container services-list-grid">
-        <div class="services-podium reveal">
-          <img src="assets/services-speaking.jpg" alt="Allana Jackson speaking at a podium" class="services-podium-img" />
-        </div>
+      <div class="container">
         <div class="service-cards">
 
           <article class="service-card reveal">
@@ -131,24 +127,6 @@
           <article class="service-card reveal">
             <div class="service-card-icon">
               <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="10" y="8" width="22" height="30" rx="2" />
-                <rect x="16" y="5" width="10" height="6" rx="1.5" />
-                <path d="M14.5 19l2.3 2.3L21 16.5" />
-                <path d="M14.5 28l2.3 2.3L21 25.5" />
-                <path d="M28.5 37.5l1-4.2 8.3-8.3a1.5 1.5 0 0 1 2.1 0l1.1 1.1a1.5 1.5 0 0 1 0 2.1l-8.3 8.3-4.2 1z" />
-                <path d="M36.8 27.7l2.5 2.5" />
-              </svg>
-            </div>
-            <div class="service-card-divider"></div>
-            <div class="service-card-body">
-              <h2 class="card-heading">Consulting</h2>
-              <p>I work with schools, organizations, and community partners to develop, strengthen, or rethink programs and initiatives with the people they serve at the center.</p>
-            </div>
-          </article>
-
-          <article class="service-card reveal">
-            <div class="service-card-icon">
-              <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M8 20.5h4.5l19-8.5v22l-19-8.5H8a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2z" />
                 <path d="M14 25l2.2 8.5a2 2 0 0 0 1.9 1.5h.5a1.8 1.8 0 0 0 1.7-2.4L18 24" />
                 <path d="M35 16c2.2 1.6 3.5 4 3.5 8s-1.3 6.4-3.5 8" />
@@ -164,6 +142,11 @@
 
         </div>
       </div>
+    </section>
+
+    <!-- ============ FRONT PORCH CONVERSATIONS PHOTO ============ -->
+    <section class="front-porch-wrap">
+      <img src="assets/front-porch-banner.jpg" alt="Allana Jackson beside the Front Porch Conversations sign" class="front-porch-img" />
     </section>
 
     <!-- ============ CTA BANNER ============ -->
@@ -210,7 +193,7 @@
   </footer>
 
 
-  <script src="js/main.js?v=202610032045"></script>
+  <script src="js/main.js?v=202610041530"></script>
 
 </body>
 </html>
