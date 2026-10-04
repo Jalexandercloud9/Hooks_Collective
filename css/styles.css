@@ -622,7 +622,7 @@ body.page-home .site-header.scrolled {
 /* Full-bleed photo, no card border or overlaid text — the photo already
    carries its own "Front Porch Conversations" signage, so it just runs
    edge to edge as a clean band before the closing CTA. */
-.front-porch-wrap { background: var(--cream); line-height: 0; }
+.front-porch-wrap { background: var(--cream); padding-bottom: 4rem; }
 .front-porch-img {
   display: block;
   width: 100%;
@@ -993,6 +993,7 @@ body.page-home .site-header.scrolled {
      cramped below this width. */
   .services-list { padding-bottom: 3.5rem; }
   .service-cards { grid-template-columns: 1fr; }
+  .front-porch-wrap { padding-bottom: 2.5rem; }
 
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
   .field-row { grid-template-columns: 1fr; gap: 0; }
