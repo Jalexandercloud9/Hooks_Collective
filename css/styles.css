@@ -13,8 +13,9 @@
   --ink: #141414;          /* headings, primary text */
   --body: #443F3B;         /* body copy */
   --muted: #6B645E;        /* captions, meta */
-  --gold: #C4873D;         /* accent: rules, icons, script, active nav */
+  --gold: #C4873D;         /* accent: rules, buttons, script, active nav */
   --gold-deep: #A96F2C;    /* gold hover */
+  --cognac: #7A4423;       /* darker warm brown: service icons + card headings */
   --border: #E5D9CE;
   --black-band: #101010;   /* CTA banner background */
 
@@ -117,7 +118,7 @@ p:last-child { margin-bottom: 0; }
   text-transform: uppercase;
   letter-spacing: -0.005em;
   font-size: 1.5rem;
-  color: var(--gold);
+  color: var(--cognac);
   margin: 0;
 }
 
@@ -511,7 +512,7 @@ body.page-home .site-header.scrolled {
 }
 
 .teaser-card { text-align: left; }
-.teaser-icon { color: var(--gold); width: 56px; height: 56px; margin-bottom: 1.5rem; }
+.teaser-icon { color: var(--cognac); width: 56px; height: 56px; margin-bottom: 1.5rem; }
 .teaser-card .card-heading { margin-bottom: 0.75rem; }
 .teaser-desc { font-size: 0.95rem; margin: 0; }
 
@@ -608,7 +609,7 @@ body.page-home .site-header.scrolled {
   place-items: center;
 }
 .service-icon {
-  color: var(--gold);
+  color: var(--cognac);
   width: 52px;
   height: 52px;
 }
@@ -619,15 +620,21 @@ body.page-home .site-header.scrolled {
 .service-card-body p { font-size: 0.82rem; line-height: 1.55; margin: 0; }
 
 /* ---------- Services: Front Porch Conversations banner ---------- */
-/* Full-bleed photo, no card border or overlaid text — the photo already
-   carries its own "Front Porch Conversations" signage, so it just runs
-   edge to edge as a clean band before the closing CTA. */
-.front-porch-wrap { background: var(--cream); padding-bottom: 4rem; }
+/* Contained and capped on desktop — the source photo is only 1242px
+   wide, so letting it run full-bleed on a wide monitor scaled it past
+   its native resolution and looked soft/pixelated. On mobile it stays
+   edge-to-edge (see the 768px override below), where it never renders
+   anywhere near that width anyway. */
+.front-porch-wrap { background: var(--cream); padding: 0 1.5rem 4rem; }
 .front-porch-img {
   display: block;
   width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
   aspect-ratio: 1.83 / 1;
   object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
 }
 
 /* ---------- About ---------- */
@@ -993,7 +1000,10 @@ body.page-home .site-header.scrolled {
      cramped below this width. */
   .services-list { padding-bottom: 3.5rem; }
   .service-cards { grid-template-columns: 1fr; }
-  .front-porch-wrap { padding-bottom: 2.5rem; }
+  /* Full-bleed edge-to-edge on mobile, unchanged from before — it never
+     renders anywhere near the photo's native resolution at this width. */
+  .front-porch-wrap { padding: 0 0 2.5rem; }
+  .front-porch-img { max-width: none; border-radius: 0; box-shadow: none; }
 
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
   .field-row { grid-template-columns: 1fr; gap: 0; }
