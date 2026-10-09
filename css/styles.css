@@ -578,28 +578,26 @@ body.page-home .site-header.scrolled {
 }
 
 /* ---------- Services: card list ---------- */
-/* 4 services (Consulting removed per Allana's note) sit in a single row
-   on desktop — even columns, no leftover-row centering needed. */
+/* Single-column list — icon left, divider, text right — per Allana's
+   reference. Same layout at every width, so there's no breakpoint-specific
+   grid to maintain. */
 .services-list { padding: 0 0 6rem; background: var(--cream); }
 .service-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 1.25rem;
 }
 
-/* Stacked (icon above heading above copy) rather than the old horizontal
-   layout, so each card stays readable at grid-cell width. */
 .service-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.75rem;
+  display: grid;
+  grid-template-columns: 70px 1px 1fr;
+  align-items: start;
+  gap: 1.5rem;
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
-  padding: 1.5rem 1.25rem;
+  padding: 1.5rem 1.75rem;
   transition: box-shadow 0.25s var(--ease);
 }
 .service-card:hover { box-shadow: 0 6px 24px rgba(20, 20, 20, 0.09); }
@@ -614,10 +612,10 @@ body.page-home .site-header.scrolled {
   height: 52px;
 }
 
-.service-card-divider { width: 100%; height: 1px; background: var(--border); }
+.service-card-divider { align-self: stretch; width: 1px; background: var(--border); }
 
-.service-card-body .card-heading { margin-bottom: 0.5rem; font-size: 1.05rem; }
-.service-card-body p { font-size: 0.82rem; line-height: 1.55; margin: 0; }
+.service-card-body .card-heading { margin-bottom: 0.5rem; font-size: 1.1rem; }
+.service-card-body p { font-size: 0.85rem; line-height: 1.6; margin: 0; }
 
 /* ---------- Services: Front Porch Conversations banner ---------- */
 /* Contained and capped on desktop — the source photo is only 1242px
@@ -884,9 +882,6 @@ body.page-home .site-header.scrolled {
      no room for two comfortable columns. */
   .services-intro-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
   .services-intro-media { max-width: 300px; }
-
-  /* 4 cards settle into a clean 2x2. */
-  .service-cards { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -996,10 +991,9 @@ body.page-home .site-header.scrolled {
   .services-intro { padding: 6.5rem 0 3rem; }
   .services-intro-media { max-width: 260px; }
 
-  /* Services cards: single column on true phones — a 2-up grid gets too
-     cramped below this width. */
   .services-list { padding-bottom: 3.5rem; }
-  .service-cards { grid-template-columns: 1fr; }
+  .service-card { grid-template-columns: 52px 1px 1fr; align-items: center; gap: 1rem; padding: 1.25rem 1.25rem; }
+
   /* Full-bleed edge-to-edge on mobile, unchanged from before — it never
      renders anywhere near the photo's native resolution at this width. */
   .front-porch-wrap { padding: 0 0 2.5rem; }
